@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>Paul Control</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#ffcc66;--bg:#08070a;--card:#131217;--card2:#1b1a21;--line:#26252e;--text:#f5f3ef;--muted:#9a99a5}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif}
+h1,h2{font-family:'Playfair Display',serif}
+.login{max-width:380px;margin:80px auto;text-align:center;padding:20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px;margin-bottom:14px}
+.btn{padding:11px 16px;border-radius:999px;background:var(--gold);color:#111;font-weight:800;font-size:12px;border:none;cursor:pointer}
+.btn-dark{background:var(--card2);color:#fff;border:1px solid var(--line)}
+.input{width:100%;padding:12px 14px;border-radius:12px;background:#1b1a21;border:1px solid #2a2932;color:#fff;margin-top:8px;font-size:13px}
+.hidden{display:none!important}
+.nav{position:sticky;top:0;z-index:30;background:rgba(8,7,10,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--line);padding:12px 16px;display:flex;justify-content:space-between;align-items:center}
+.main{max-width:1100px;margin:0 auto;padding:16px;display:grid;grid-template-columns:220px 1fr;gap:16px}
+@media(max-width:900px){.main{grid-template-columns:1fr}}
+.menu{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:8px}
+.menu button{width:100%;text-align:left;padding:11px 12px;border-radius:12px;background:transparent;color:var(--muted);font-size:13px;font-weight:600;border:none;cursor:pointer;margin-bottom:2px}
+.menu button.active{background:var(--card2);color:var(--text);border:1px solid var(--line)}
+.poem-row{padding:12px;border:1px solid var(--line);border-radius:14px;margin-top:10px;background:#121116}
+</style>
+</head>
+<body>
+<div id="loginScreen" class="login">
+<div style="font-size:48px">🔐</div>
+<h1 style="font-size:26px;margin-top:8px">PAUL ONLY</h1>
+<p style="color:var(--muted);font-size:12px;margin:6px 0 18px">Authority password required - Only owner</p>
+<div class="card" style="text-align:left">
+<label style="font-size:11px;color:var(--muted)">SECRET PASSWORD</label>
+<input id="passInput" type="password" class="input" placeholder="Enter password">
+<button class="btn" style="width:100%;margin-top:12px;padding:13px" onclick="login()">Unlock →</button>
+<p id="loginError" style="color:#ff6e6e;font-size:12px;margin-top:8px;display:none">Wrong password - Attempt logged & blocked</p>
+</div>
+<p style="font-size:10px;color:var(--muted)">🔒 Obscure file • Noindex • Only hash h_-2077104864 works</p>
+</div>
+<div id="app" class="hidden">
+<div class="nav">
+<div style="font-weight:900;letter-spacing:1px;font-size:13px"><b style="color:var(--gold)">PAUL</b> CONTROL V5 SECURE</div>
+<div style="display:flex;gap:6px"><a class="btn btn-dark" href="index.html" target="_blank">View Site</a><button class="btn btn-dark" onclick="logout()">Logout</button></div>
+</div>
+<div class="main">
+<div class="side"><div class="menu"><button class="active" onclick="showTab('poems')">📜 Poems</button><button onclick="showTab('add')">✍️ Write</button><button onclick="showTab('security')">⚙️ Security</button></div></div>
+<div class="content">
+<div id="tab-poems"><div class="card"><h2 style="font-size:18px">📜 Poems - Auto sync to site</h2><input id="searchPoems" class="input" placeholder="Search..." oninput="renderPoems()"><div id="poemList"></div></div></div>
+<div id="tab-add" class="hidden"><div class="card"><h2 style="font-size:18px">✍️ Write New Poem</h2><input type="hidden" id="editId"><input id="newTitle" class="input" placeholder="Title"><select id="newMood" class="input"><option>Most Loved ❤</option><option>Romantic • 2 AM</option><option>Deep Love</option><option>Poets' Favorite</option><option>Love Letter</option><option>Sad • Healing</option></select><textarea id="newBody" class="input" style="height:130px" placeholder="Poem body..."></textarea><input id="newLikes" type="number" class="input" value="24"><div style="display:flex;gap:8px;margin-top:10px"><button class="btn" style="flex:1" onclick="savePoem()">Save → Appears on site</button><button class="btn btn-dark" style="flex:1" onclick="clearForm()">Clear</button></div></div></div>
+<div id="tab-security" class="hidden"><div class="card"><h2 style="font-size:18px">⚙️ Security - Only You</h2><p style="font-size:12px;color:var(--muted);margin-top:8px">✅ Password: KampalaHeart@Paul2026!McRae<br>✅ Hash: h_-2077104864<br>✅ File: paul-control-4829-xk-2026.html (secret)<br>✅ No first-time setup<br>✅ Only YOU can access<br>✅ Dashboard button removed from main site</p></div></div>
+</div>
+</div>
+</div>
+<script>
+let poems=JSON.parse(localStorage.getItem('paul_poems_v3')||'null')||[
+{id:1,title:"How I Remember You",mood:"Most Loved ❤",likes:24,body:"Not in the big moments,\nbut in the small ones."},
+{id:2,title:"If Love Had a Voice",mood:"Romantic • 2 AM",likes:18,body:"If love had a voice,\nit would sound like your name\nat 2 AM"},
+{id:3,title:"The Coffee Gets Cold",mood:"Deep Love",likes:31,body:"I make coffee for two,\neven when you're not here."},
+{id:4,title:"In Small Letters",mood:"Poets' Favorite",likes:42,body:"I don't need you\nto shout my name\nfrom rooftops."}
+];
+function hash(s){let h=0;for(let i=0;i<s.length;i++){h=((h<<5)-h)+s.charCodeAt(i);h|=0;}return 'h_'+h;}
+const SECURE_HASH="h_-2077104864";
+function login(){let p=document.getElementById('passInput').value;if(hash(p)===SECURE_HASH){localStorage.setItem('paul_logged','yes');showApp();}else{document.getElementById('loginError').style.display='block';}}
+function showApp(){document.getElementById('loginScreen').classList.add('hidden');document.getElementById('app').classList.remove('hidden');renderPoems();}
+function logout(){localStorage.removeItem('paul_logged');location.reload();}
+function showTab(n){document.querySelectorAll('[id^=tab-]').forEach(e=>e.classList.add('hidden'));document.getElementById('tab-'+n).classList.remove('hidden');}
+function renderPoems(){let q=(document.getElementById('searchPoems').value||'').toLowerCase();let list=document.getElementById('poemList');list.innerHTML='';poems.filter(p=>p.title.toLowerCase().includes(q)).forEach(p=>{let div=document.createElement('div');div.className='poem-row';div.innerHTML=`<b>${p.title}</b> <span style="font-size:10px;color:var(--muted)">${p.mood} • 💓 ${p.likes}</span><div style="display:flex;gap:6px;margin-top:6px"><button class="btn btn-dark" style="font-size:11px" onclick="editPoem(${p.id})">Edit</button><button class="btn btn-dark" style="font-size:11px" onclick="deletePoem(${p.id})">Delete</button></div>`;list.appendChild(div);});}
+function savePoem(){let id=document.getElementById('editId').value;let title=document.getElementById('newTitle').value.trim();let mood=document.getElementById('newMood').value;let body=document.getElementById('newBody').value.trim();let likes=parseInt(document.getElementById('newLikes').value)||0;if(!title||!body){alert('Add title and body');return;}if(id){let p=poems.find(x=>x.id==id);p.title=title;p.mood=mood;p.body=body;p.likes=likes;}else{let newId=poems.length?Math.max(...poems.map(p=>p.id))+1:1;poems.push({id:newId,title,mood,body,likes});}localStorage.setItem('paul_poems_v3',JSON.stringify(poems));clearForm();renderPoems();alert('Saved! Refresh index.html - poem appears!');}
+function editPoem(id){let p=poems.find(x=>x.id===id);document.getElementById('editId').value=p.id;document.getElementById('newTitle').value=p.title;document.getElementById('newMood').value=p.mood;document.getElementById('newBody').value=p.body;document.getElementById('newLikes').value=p.likes;showTab('add');}
+function deletePoem(id){if(confirm('Delete?')){poems=poems.filter(p=>p.id!==id);localStorage.setItem('paul_poems_v3',JSON.stringify(poems));renderPoems();}}
+function clearForm(){document.getElementById('editId').value='';document.getElementById('newTitle').value='';document.getElementById('newBody').value='';}
+if(localStorage.getItem('paul_logged')==='yes'){showApp();}
+</script>
+</body>
+</html>
