@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex, nofollow, noarchive">
-<title>Paul Control V6 - Password Manager</title>
+<title>Paul Control V8</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 <style>
 :root{--gold:#ffcc66;--bg:#08070a;--card:#131217;--card2:#1b1a21;--line:#26252e;--text:#f5f3ef;--muted:#9a99a5}
@@ -27,6 +27,10 @@ h1,h2{font-family:'Playfair Display',serif}
 .alert{padding:10px 12px;border-radius:10px;font-size:12px;margin-top:8px}
 .alert-success{background:#132114;border:1px solid #254a1f;color:#8fdf8f}
 .alert-error{background:#2a1414;border:1px solid #4a2222;color:#ff9a9a}
+.pass-wrap{position:relative;display:flex;align-items:center}
+.pass-wrap .input{padding-right:42px}
+.eye{position:absolute;right:10px;top:50%;transform:translateY(-50%);margin-top:4px;background:transparent;border:none;cursor:pointer;font-size:16px;opacity:0.7}
+.eye:hover{opacity:1}
 </style>
 </head>
 <body>
@@ -34,43 +38,52 @@ h1,h2{font-family:'Playfair Display',serif}
 <div id="loginScreen" class="login">
 <div style="font-size:48px">🔐</div>
 <h1 style="font-size:26px;margin-top:8px">PAUL ONLY</h1>
-<p style="color:var(--muted);font-size:12px;margin:6px 0 18px">Enter your password - You can change it inside</p>
+<p style="color:var(--muted);font-size:12px;margin:6px 0 18px">Private access</p>
 <div class="card" style="text-align:left">
-<label style="font-size:11px;color:var(--muted)">PASSWORD (Default: Charles)</label>
+<label style="font-size:11px;color:var(--muted)">PASSWORD</label>
+<div class="pass-wrap">
 <input id="passInput" type="password" class="input" placeholder="Enter password">
+<button class="eye" onclick="toggleEye('passInput',this)" type="button">👁️</button>
+</div>
 <button class="btn" style="width:100%;margin-top:12px;padding:13px" onclick="login()">Unlock →</button>
 <p id="loginError" style="color:#ff6e6e;font-size:12px;margin-top:8px;display:none">Wrong password!</p>
-<p id="firstTimeMsg" style="font-size:11px;color:var(--gold);margin-top:10px;display:none">💡 First time? Default password is <b>Charles</b> - Change it after login!</p>
 </div>
 </div>
 
 <div id="app" class="hidden">
 <div class="nav">
-<div style="font-weight:900;letter-spacing:1px;font-size:13px"><b style="color:var(--gold)">PAUL</b> CONTROL V6</div>
+<div style="font-weight:900;letter-spacing:1px;font-size:13px"><b style="color:var(--gold)">PAUL</b> CONTROL</div>
 <div style="display:flex;gap:6px"><a class="btn btn-dark" href="index.html" target="_blank">View Site</a><button class="btn btn-dark" onclick="logout()">Logout</button></div>
 </div>
 <div class="main">
-<div class="side"><div class="menu"><button class="active" id="btn-poems" onclick="showTab('poems')">📜 Poems</button><button id="btn-add" onclick="showTab('add')">✍️ Write</button><button id="btn-security" onclick="showTab('security')">🔐 Change Password</button></div></div>
+<div class="side"><div class="menu"><button class="active" id="btn-poems" onclick="showTab('poems')">📜 Poems</button><button id="btn-add" onclick="showTab('add')">✍️ Write</button><button id="btn-security" onclick="showTab('security')">🔐 Security</button></div></div>
 <div class="content">
 <div id="tab-poems"><div class="card"><h2 style="font-size:18px">📜 Your Poems</h2><input id="searchPoems" class="input" placeholder="Search..." oninput="renderPoems()"><div id="poemList"></div></div></div>
 <div id="tab-add" class="hidden"><div class="card"><h2 style="font-size:18px">✍️ Write New Poem</h2><input type="hidden" id="editId"><input id="newTitle" class="input" placeholder="Title"><select id="newMood" class="input"><option>Most Loved ❤</option><option>Romantic • 2 AM</option><option>Deep Love</option><option>Poets' Favorite</option><option>Love Letter</option></select><textarea id="newBody" class="input" style="height:130px" placeholder="Poem body..."></textarea><input id="newLikes" type="number" class="input" value="24"><div style="display:flex;gap:8px;margin-top:10px"><button class="btn" style="flex:1" onclick="savePoem()">Save</button><button class="btn btn-dark" style="flex:1" onclick="clearForm()">Clear</button></div></div></div>
 <div id="tab-security" class="hidden">
-<div class="card"><h2 style="font-size:18px">🔐 Password Manager - Only You</h2><p style="font-size:11px;color:var(--muted);margin-top:6px">Here you can create and change your password anytime! No code editing needed!</p>
-
+<div class="card"><h2 style="font-size:18px">🔐 Security</h2><p style="font-size:11px;color:var(--muted);margin-top:6px">Change your password anytime</p>
 <div style="margin-top:16px;padding:14px;background:#1b1a21;border-radius:14px;border:1px solid var(--line)">
 <label style="font-size:11px;color:var(--muted)">CURRENT PASSWORD</label>
-<input id="currentPass" type="password" class="input" placeholder="Enter current password">
-<label style="font-size:11px;color:var(--muted);margin-top:12px;display:block">NEW PASSWORD (You choose - Example: Charles2026!)</label>
+<div class="pass-wrap">
+<input id="currentPass" type="password" class="input" placeholder="Current password">
+<button class="eye" onclick="toggleEye('currentPass',this)" type="button">👁️</button>
+</div>
+<label style="font-size:11px;color:var(--muted);margin-top:12px;display:block">NEW PASSWORD</label>
+<div class="pass-wrap">
 <input id="newPass" type="password" class="input" placeholder="New password">
+<button class="eye" onclick="toggleEye('newPass',this)" type="button">👁️</button>
+</div>
 <label style="font-size:11px;color:var(--muted);margin-top:12px;display:block">CONFIRM NEW PASSWORD</label>
-<input id="confirmPass" type="password" class="input" placeholder="Confirm new password">
+<div class="pass-wrap">
+<input id="confirmPass" type="password" class="input" placeholder="Confirm">
+<button class="eye" onclick="toggleEye('confirmPass',this)" type="button">👁️</button>
+</div>
 <button class="btn" style="width:100%;margin-top:14px;padding:13px" onclick="changePassword()">Change Password → Save</button>
 <div id="passMsg"></div>
 </div>
-
 <div style="margin-top:14px;padding:12px;background:#121116;border-radius:12px;border:1px solid var(--line)">
-<p style="font-size:11px;color:var(--muted)">✅ Current password: <b id="currentPassDisplay" style="color:var(--gold)"></b><br>✅ Stored securely in your browser<br>✅ Only you can change it here<br>✅ No one else can create password</p>
-<button class="btn btn-dark" style="margin-top:8px;font-size:11px" onclick="resetToDefault()">Reset to Default: Charles</button>
+<p style="font-size:11px;color:var(--muted)">✅ Password stored securely<br>✅ Only you can change it<br>✅ No hints displayed</p>
+<button class="btn btn-dark" style="margin-top:8px;font-size:11px" onclick="resetToDefault()">Reset to default</button>
 </div>
 </div>
 </div>
@@ -85,13 +98,13 @@ let poems=JSON.parse(localStorage.getItem('paul_poems_v3')||'null')||[
 {id:3,title:"The Coffee Gets Cold",mood:"Deep Love",likes:31,body:"I make coffee for two,\neven when you're not here."},
 {id:4,title:"In Small Letters",mood:"Poets' Favorite",likes:42,body:"I don't need you\nto shout my name\nfrom rooftops."}
 ];
-
 function hash(s){let h=0;for(let i=0;i<s.length;i++){h=((h<<5)-h)+s.charCodeAt(i);h|=0;}return 'h_'+h;}
-
-// Default hash for Charles + custom hash from localStorage
 const DEFAULT_HASH="h_-1891246364";
 function getActiveHash(){return localStorage.getItem('paul_custom_hash')||DEFAULT_HASH;}
-
+function toggleEye(id,btn){
+let input=document.getElementById(id);
+if(input.type==="password"){input.type="text";btn.textContent="🙈";}else{input.type="password";btn.textContent="👁️";}
+}
 function login(){
 let p=document.getElementById('passInput').value;
 if(hash(p)===getActiveHash()){
@@ -99,10 +112,9 @@ localStorage.setItem('paul_logged','yes');
 showApp();
 } else {
 document.getElementById('loginError').style.display='block';
-document.getElementById('firstTimeMsg').style.display='block';
 }
 }
-function showApp(){document.getElementById('loginScreen').classList.add('hidden');document.getElementById('app').classList.remove('hidden');renderPoems();updatePassDisplay();}
+function showApp(){document.getElementById('loginScreen').classList.add('hidden');document.getElementById('app').classList.remove('hidden');renderPoems();}
 function logout(){localStorage.removeItem('paul_logged');location.reload();}
 function showTab(n){document.querySelectorAll('[id^=tab-]').forEach(e=>e.classList.add('hidden'));document.getElementById('tab-'+n).classList.remove('hidden');document.querySelectorAll('.menu button').forEach(b=>b.classList.remove('active'));document.getElementById('btn-'+n).classList.add('active');}
 function renderPoems(){let q=(document.getElementById('searchPoems').value||'').toLowerCase();let list=document.getElementById('poemList');list.innerHTML='';poems.filter(p=>p.title.toLowerCase().includes(q)).forEach(p=>{let div=document.createElement('div');div.className='poem-row';div.innerHTML=`<b>${p.title}</b> <span style="font-size:10px;color:var(--muted)">${p.mood} • 💓 ${p.likes}</span><div style="display:flex;gap:6px;margin-top:6px"><button class="btn btn-dark" style="font-size:11px" onclick="editPoem(${p.id})">Edit</button><button class="btn btn-dark" style="font-size:11px" onclick="deletePoem(${p.id})">Delete</button></div>`;list.appendChild(div);});}
@@ -110,42 +122,25 @@ function savePoem(){let id=document.getElementById('editId').value;let title=doc
 function editPoem(id){let p=poems.find(x=>x.id===id);document.getElementById('editId').value=p.id;document.getElementById('newTitle').value=p.title;document.getElementById('newMood').value=p.mood;document.getElementById('newBody').value=p.body;document.getElementById('newLikes').value=p.likes;showTab('add');}
 function deletePoem(id){if(confirm('Delete?')){poems=poems.filter(p=>p.id!==id);localStorage.setItem('paul_poems_v3',JSON.stringify(poems));renderPoems();}}
 function clearForm(){document.getElementById('editId').value='';document.getElementById('newTitle').value='';document.getElementById('newBody').value='';}
-
-function updatePassDisplay(){
-let custom = localStorage.getItem('paul_custom_pass_hint');
-let display = custom ? custom : 'Charles (default)';
-document.getElementById('currentPassDisplay').innerText = display;
-}
-
 function changePassword(){
 let curr=document.getElementById('currentPass').value;
 let newP=document.getElementById('newPass').value;
 let conf=document.getElementById('confirmPass').value;
 let msg=document.getElementById('passMsg');
-
 if(hash(curr)!==getActiveHash()){msg.innerHTML='<div class="alert alert-error">❌ Current password wrong!</div>';return;}
-if(newP.length<4){msg.innerHTML='<div class="alert alert-error">❌ New password too short - minimum 4 characters</div>';return;}
-if(newP!==conf){msg.innerHTML='<div class="alert alert-error">❌ New passwords do not match!</div>';return;}
-
+if(newP.length<4){msg.innerHTML='<div class="alert alert-error">❌ Too short - min 4 chars</div>';return;}
+if(newP!==conf){msg.innerHTML='<div class="alert alert-error">❌ Passwords do not match!</div>';return;}
 localStorage.setItem('paul_custom_hash',hash(newP));
-localStorage.setItem('paul_custom_pass_hint', newP.substring(0,2)+'***'+newP.slice(-2) + ' (you set)');
-msg.innerHTML='<div class="alert alert-success">✅ Password changed! New password: <b>'+newP+'</b> - SAVE IT! Refresh and login with new password.</div>';
-document.getElementById('currentPass').value='';
-document.getElementById('newPass').value='';
-document.getElementById('confirmPass').value='';
-updatePassDisplay();
+msg.innerHTML='<div class="alert alert-success">✅ Password changed!</div>';
+document.getElementById('currentPass').value='';document.getElementById('newPass').value='';document.getElementById('confirmPass').value='';
 }
-
 function resetToDefault(){
-if(confirm('Reset to default password Charles?')){
+if(confirm('Reset to default password?')){
 localStorage.removeItem('paul_custom_hash');
-localStorage.removeItem('paul_custom_pass_hint');
-document.getElementById('passMsg').innerHTML='<div class="alert alert-success">✅ Reset to default: Charles</div>';
-updatePassDisplay();
+document.getElementById('passMsg').innerHTML='<div class="alert alert-success">✅ Reset to default password</div>';
 }
 }
-
 if(localStorage.getItem('paul_logged')==='yes'){showApp();}
 </script>
 </body>
-  </html>
+                                                                         </html>
