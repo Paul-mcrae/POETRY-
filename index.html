@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>PAUL POETRY - Love letters that never sent</title>
+<meta name="description" content="Paul McRae from Kampala - Romantic poet. WhatsApp +256709478798">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
 <style>
 :root{--gold:#ffcc66;--bg:#0a0a0c;--card:#17161b;--line:#23222a;--text:#f2f0eb;--muted:#9d9ba6}
@@ -15,9 +16,9 @@ h1,h2,h3{font-family:'Playfair Display',serif}
 .hero{max-width:1100px;margin:0 auto;padding:60px 20px 20px;text-align:center}
 .hero h1{font-size:42px;line-height:1.1;max-width:700px;margin:0 auto}
 @media(max-width:600px){.hero h1{font-size:30px}}
-.hero p{color:var(--muted);margin:14px auto;max-width:560px;font-size:15px}
+.hero p{color:var(--muted);margin:14px auto;max-width:580px;font-size:15px}
 .btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:18px}
-.btn{padding:12px 20px;border-radius:999px;background:var(--gold);color:#111;font-weight:800;font-size:13px;text-decoration:none;display:inline-block;border:none;cursor:pointer}
+.btn{padding:12px 22px;border-radius:999px;background:var(--gold);color:#111;font-weight:800;font-size:13px;text-decoration:none;display:inline-block;border:none;cursor:pointer}
 .btn-dark{background:#1c1b22;color:#fff;border:1px solid var(--line)}
 .images{max-width:1100px;margin:20px auto;padding:0 20px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
 @media(max-width:700px){.images{grid-template-columns:1fr 1fr}}
@@ -25,165 +26,76 @@ h1,h2,h3{font-family:'Playfair Display',serif}
 .container{max-width:1100px;margin:0 auto;padding:20px}
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:14px}
 @media(max-width:700px){.grid{grid-template-columns:1fr}}
-.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px;transition:transform 0.2s}
+.card:hover{transform:translateY(-2px);border-color:#2e2d36}
 .mood{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--gold);font-weight:800;border:1px solid #3a3525;background:#221e14;padding:4px 10px;border-radius:999px;display:inline-block;margin-bottom:10px}
 .card h3{font-size:20px;margin:6px 0 8px}
 .card p{font-size:14px;color:#d9d6d1;white-space:pre-line}
 .actions{display:flex;justify-content:space-between;align-items:center;margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
 .left-act{display:flex;gap:8px}
-.act-btn{display:flex;align-items:center;gap:6px;padding:7px 12px;border-radius:999px;background:#1e1d24;border:1px solid #2a2932;color:var(--muted);font-size:12px;font-weight:700;cursor:pointer;transition:all 0.2s}
+.act-btn{display:flex;align-items:center;gap:6px;padding:7px 14px;border-radius:999px;background:#1e1d24;border:1px solid #2a2932;color:var(--muted);font-size:12px;font-weight:700;cursor:pointer;transition:all 0.2s}
 .act-btn b{color:var(--text)}
 .act-btn.liked{border-color:var(--gold);color:var(--gold);background:#221e14}
 .footer{text-align:center;padding:30px 20px;color:var(--muted);font-size:12px;border-top:1px solid var(--line);margin-top:20px}
-.badge-live{display:inline-block;background:#121116;border:1px solid #2a2a30;padding:6px 12px;border-radius:999px;font-size:11px;color:var(--muted);margin-top:10px}
+.badge-live{display:inline-block;background:#121116;border:1px solid #2a2a30;padding:6px 14px;border-radius:999px;font-size:11px;color:var(--muted);margin-top:12px}
 </style>
 </head>
 <body>
-
-<div class="nav">
-<div class="logo"><b>PAUL</b> POETRY</div>
-<div style="display:flex;gap:8px"><a class="btn btn-dark" href="dashboard.html">Dashboard</a><a class="btn" href="https://wa.me/256709478798">WhatsApp</a></div>
-</div>
-
+<div class="nav"><div class="logo"><b>PAUL</b> POETRY</div><div><a class="btn" href="https://wa.me/256709478798">WhatsApp Me</a></div></div>
 <div class="hero">
 <h1>Love letters that never sent</h1>
-<p>I'm Paul from Kampala. Tap 💓 to like - it turns ❤️! Tap 💬 to comment - see others' comments!</p>
+<p>I'm Paul from Kampala. I write for poets who love at 2 AM. Tap 💓 to like — it turns ❤️ and saves. Tap 💬 to comment — see what others feel.</p>
 <div class="btns">
 <a class="btn" href="https://vt.tiktok.com/ZSgjB8pQT/" target="_blank">TikTok</a>
-<a class="btn btn-dark" href="https://wa.me/256709478798" target="_blank">WhatsApp</a>
-<a class="btn btn-dark" href="mailto:paulkaganda957@gmail.com">Email</a>
+<a class="btn btn-dark" href="https://wa.me/256709478798" target="_blank">WhatsApp: +256709478798</a>
+<a class="btn btn-dark" href="mailto:paulkaganda957@gmail.com">Email Me</a>
 </div>
-<div class="badge-live">🔴 ACTIVE LIKES & COMMENTS • <span id="poemCountBadge">4 poems</span></div>
+<div class="badge-live">🔴 LIVE • Active Likes & Comments • <span id="poemCountBadge">4 poems</span></div>
 </div>
-
 <div class="images">
-<img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=600">
-<img src="https://images.unsplash.com/photo-1529634597503-139d3726fed5?q=80&w=600">
-<img src="https://images.unsplash.com/photo-1474552226712-ac0f0961a954?q=80&w=600">
-<img src="https://images.unsplash.com/photo-1494774157365-9e04c6720e47?q=80&w=600">
-<img src="https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?q=80&w=600">
-<img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?q=80&w=600">
+<img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=600" alt="poetry">
+<img src="https://images.unsplash.com/photo-1529634597503-139d3726fed5?q=80&w=600" alt="love">
+<img src="https://images.unsplash.com/photo-1474552226712-ac0f0961a954?q=80&w=600" alt="poet">
+<img src="https://images.unsplash.com/photo-1494774157365-9e04c6720e47?q=80&w=600" alt="romantic">
+<img src="https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?q=80&w=600" alt="letters">
+<img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?q=80&w=600" alt="kiss">
 </div>
-
-<div class="container">
-<h2 style="font-size:24px">Poems - Like & Comment Active 🔥</h2>
-<div class="grid" id="poemsGrid"></div>
-</div>
-
-<div class="footer">Paul McRae • Kampala • +256709478798 • paulkaganda957@gmail.com</div>
-
+<div class="container"><h2 style="font-size:24px">Latest Poems 🔥</h2><div class="grid" id="poemsGrid"></div></div>
+<div class="footer"><b>Paul McRae</b> • Kampala, Uganda • Romantic Poet<br>WhatsApp +256709478798 • TikTok vt.tiktok.com/ZSgjB8pQT/ • © 2026 Made with ❤️ in Kampala</div>
 <script>
-let defaultPoems = [
+let defaultPoems=[
 {id:1,title:"How I Remember You",mood:"Most Loved ❤",likes:24,body:"Not in the big moments,\nbut in the small ones.\n\nHow you fix your hair\nwhen you're nervous.\nHow you laugh\nwhen you try not to.\n\nI fell in love\nin the details,\nand that's where I still live."},
 {id:2,title:"If Love Had a Voice",mood:"Romantic • 2 AM",likes:18,body:"If love had a voice,\nit would sound like your name\nat 2 AM\nwhen the world is asleep\nand my heart is not.\n\nIt would whisper,\n\"stay,\"\nand I would."},
 {id:3,title:"The Coffee Gets Cold",mood:"Deep Love",likes:31,body:"I make coffee for two,\neven when you're not here.\nI watch mine get cold,\nwaiting.\n\nBecause love, I learned,\nis not about\nwho arrives first.\nIt's about\nwho keeps the seat warm."},
 {id:4,title:"In Small Letters",mood:"Poets' Favorite",likes:42,body:"I don't need you\nto shout my name\nfrom rooftops.\n\nJust write it\nin small letters,\nin the corner\nof your day.\n\nLike,\n\"thinking of Paul\"\nbetween errands.\n\nThat's enough.\nThat's everything."}
 ];
-
-let saved = JSON.parse(localStorage.getItem('paul_poems_v3') || 'null');
-let poemsToShow = (saved && saved.length>0) ? saved : defaultPoems;
-
-function getComments(id){ return JSON.parse(localStorage.getItem('paul_comments_'+id) || '[]'); }
-function getLikes(id){
-  let extra = parseInt(localStorage.getItem('paul_extra_likes_'+id) || '0');
-  let base = poemsToShow.find(p=>p.id==id)?.likes || 0;
-  return base + extra;
-}
-
+let saved=JSON.parse(localStorage.getItem('paul_poems_v3')||'null');
+let poemsToShow=(saved&&saved.length>0)?saved:defaultPoems;
+function getComments(id){return JSON.parse(localStorage.getItem('paul_comments_'+id)||'[]');}
+function getLikes(id){let extra=parseInt(localStorage.getItem('paul_extra_likes_'+id)||'0');let base=poemsToShow.find(p=>p.id==id)?.likes||0;return base+extra;}
 function render(){
-  let grid=document.getElementById('poemsGrid');
-  grid.innerHTML='';
-  poemsToShow.forEach((p)=>{
-    let id=p.id;
-    let liked=localStorage.getItem('liked_'+id)?'liked':'';
-    let comments=getComments(id);
-    let likes=getLikes(id);
-    let div=document.createElement('div');
-    div.className='card';
-    div.innerHTML=`
-      <span class="mood">${p.mood}</span>
-      <h3>${p.title}</h3>
-      <p>${p.body}</p>
-      <div class="actions">
-        <div class="left-act">
-          <button class="act-btn ${liked}" id="btn${id}" onclick="likePoem(${id})"><span id="icon${id}">${liked?'❤️':'💓'}</span><b id="count${id}">${likes}</b></button>
-          <button class="act-btn" onclick="toggleComments(${id})"><span>💬</span><b id="commentCount${id}">${comments.length}</b></button>
-        </div>
-        <button class="act-btn" onclick="copyPoem(${id})">🔗</button>
-      </div>
-      <div id="commentBox${id}" style="display:none;margin-top:12px;border-top:1px solid #23222a;padding-top:12px">
-        <div id="commentList${id}" style="max-height:220px;overflow:auto;display:flex;flex-direction:column;gap:8px;margin-bottom:10px"></div>
-        <div style="display:flex;gap:6px">
-          <input id="commentInput${id}" placeholder="Write comment..." style="flex:1;padding:10px 12px;border-radius:999px;background:#1e1d24;border:1px solid #2a2932;color:#fff;font-size:13px">
-          <button class="btn" style="padding:10px 16px;font-size:12px" onclick="addComment(${id})">Post</button>
-        </div>
-      </div>
-    `;
-    grid.appendChild(div);
-    renderCommentsList(id);
-  });
-  document.getElementById('poemCountBadge').innerText=poemsToShow.length+' poems';
+let grid=document.getElementById('poemsGrid');grid.innerHTML='';
+poemsToShow.forEach(p=>{
+let id=p.id;let liked=localStorage.getItem('liked_'+id)?'liked':'';let comments=getComments(id);let likes=getLikes(id);
+let div=document.createElement('div');div.className='card';
+div.innerHTML=`<span class="mood">${p.mood}</span><h3>${p.title}</h3><p>${p.body}</p><div class="actions"><div class="left-act"><button class="act-btn ${liked}" id="btn${id}" onclick="likePoem(${id})"><span id="icon${id}">${liked?'❤️':'💓'}</span><b id="count${id}">${likes}</b></button><button class="act-btn" onclick="toggleComments(${id})"><span>💬</span><b id="commentCount${id}">${comments.length}</b></button></div><button class="act-btn" onclick="copyPoem(${id})">🔗 Copy</button></div><div id="commentBox${id}" style="display:none;margin-top:12px;border-top:1px solid #23222a;padding-top:12px"><div id="commentList${id}" style="max-height:220px;overflow:auto;display:flex;flex-direction:column;gap:8px;margin-bottom:10px"></div><div style="display:flex;gap:6px"><input id="commentInput${id}" placeholder="Write comment..." style="flex:1;padding:10px 12px;border-radius:999px;background:#1e1d24;border:1px solid #2a2932;color:#fff;font-size:13px"><button class="btn" style="padding:10px 16px;font-size:12px" onclick="addComment(${id})">Post</button></div></div>`;
+grid.appendChild(div);renderCommentsList(id);
+});
+document.getElementById('poemCountBadge').innerText=poemsToShow.length+' poems';
 }
-
 function renderCommentsList(id){
-  let list=document.getElementById('commentList'+id);
-  if(!list) return;
-  let comments=getComments(id);
-  list.innerHTML='';
-  if(comments.length===0){
-    list.innerHTML='<p style="font-size:12px;color:var(--muted);text-align:center;padding:10px">No comments yet. Be first to comment! 💬</p>';
-    return;
-  }
-  comments.slice().reverse().forEach(c=>{
-    let d=document.createElement('div');
-    d.style.cssText='background:#121116;border:1px solid #222;padding:8px 10px;border-radius:12px;font-size:12px';
-    d.innerHTML=`<b style="color:var(--gold);font-size:11px">${c.name}</b> <span style="font-size:10px;color:var(--muted)">${c.time}</span><br>${c.text}`;
-    list.appendChild(d);
-  });
+let list=document.getElementById('commentList'+id);if(!list) return;let comments=getComments(id);list.innerHTML='';
+if(comments.length===0){list.innerHTML='<p style="font-size:12px;color:var(--muted);text-align:center;padding:10px">No comments yet. Be first! 💬</p>';return;}
+comments.slice().reverse().forEach(c=>{let d=document.createElement('div');d.style.cssText='background:#121116;border:1px solid #222;padding:8px 10px;border-radius:12px;font-size:12px';d.innerHTML=`<b style="color:var(--gold);font-size:11px">${c.name}</b> <span style="font-size:10px;color:var(--muted)">${c.time}</span><br>${c.text}`;list.appendChild(d);});
 }
-
 function likePoem(id){
-  if(localStorage.getItem('liked_'+id)){
-    localStorage.removeItem('liked_'+id);
-    let extra=parseInt(localStorage.getItem('paul_extra_likes_'+id)||'0');
-    localStorage.setItem('paul_extra_likes_'+id, Math.max(0,extra-1));
-    document.getElementById('icon'+id).innerText='💓';
-    document.getElementById('btn'+id).classList.remove('liked');
-  } else {
-    localStorage.setItem('liked_'+id,'yes');
-    let extra=parseInt(localStorage.getItem('paul_extra_likes_'+id)||'0')+1;
-    localStorage.setItem('paul_extra_likes_'+id, extra);
-    document.getElementById('icon'+id).innerText='❤️';
-    document.getElementById('btn'+id).classList.add('liked');
-    let btn=document.getElementById('btn'+id);
-    btn.style.transform='scale(1.3)'; setTimeout(()=>btn.style.transform='scale(1)',200);
-  }
-  document.getElementById('count'+id).innerText=getLikes(id);
+if(localStorage.getItem('liked_'+id)){localStorage.removeItem('liked_'+id);let extra=parseInt(localStorage.getItem('paul_extra_likes_'+id)||'0');localStorage.setItem('paul_extra_likes_'+id,Math.max(0,extra-1));document.getElementById('icon'+id).innerText='💓';document.getElementById('btn'+id).classList.remove('liked');}
+else{localStorage.setItem('liked_'+id,'yes');let extra=parseInt(localStorage.getItem('paul_extra_likes_'+id)||'0')+1;localStorage.setItem('paul_extra_likes_'+id,extra);document.getElementById('icon'+id).innerText='❤️';document.getElementById('btn'+id).classList.add('liked');let btn=document.getElementById('btn'+id);btn.style.transform='scale(1.3)';setTimeout(()=>btn.style.transform='scale(1)',200);}
+document.getElementById('count'+id).innerText=getLikes(id);
 }
-
-function toggleComments(id){
-  let box=document.getElementById('commentBox'+id);
-  box.style.display=box.style.display==='none'?'block':'none';
-  if(box.style.display==='block'){ renderCommentsList(id); }
-}
-
-function addComment(id){
-  let input=document.getElementById('commentInput'+id);
-  let text=input.value.trim();
-  if(!text){ alert('Write something!'); return; }
-  let comments=getComments(id);
-  comments.push({name:'Poetry Lover',text:text,time:new Date().toLocaleDateString()+' '+new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})});
-  localStorage.setItem('paul_comments_'+id, JSON.stringify(comments));
-  input.value='';
-  renderCommentsList(id);
-  document.getElementById('commentCount'+id).innerText=comments.length;
-}
-
-function copyPoem(id){
-  let p=poemsToShow.find(x=>x.id==id);
-  navigator.clipboard.writeText(p.title+"\n\n"+p.body).then(()=>alert('Copied!'));
-}
-
+function toggleComments(id){let box=document.getElementById('commentBox'+id);box.style.display=box.style.display==='none'?'block':'none';if(box.style.display==='block'){renderCommentsList(id);}}
+function addComment(id){let input=document.getElementById('commentInput'+id);let text=input.value.trim();if(!text){alert('Write something!');return;}let comments=getComments(id);comments.push({name:'Poetry Lover',text:text,time:new Date().toLocaleDateString()+' '+new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})});localStorage.setItem('paul_comments_'+id,JSON.stringify(comments));input.value='';renderCommentsList(id);document.getElementById('commentCount'+id).innerText=comments.length;}
+function copyPoem(id){let p=poemsToShow.find(x=>x.id==id);navigator.clipboard.writeText(p.title+"\n\n"+p.body+"\n\n— Paul Poetry paul-mcrae.github.io/POETRY-/").then(()=>alert('Copied! Share on TikTok!'));}
 render();
 </script>
 </body>
