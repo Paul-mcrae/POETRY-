@@ -8,26 +8,33 @@
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#000;color:#fff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
 header{background:#0a0a0a;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100;border-bottom:1px solid #222}
-.logo{font-weight:900;font-size:20px;letter-spacing:1px}
+.logo{font-weight:900;font-size:20px}
 .logo span{color:#f5c518}
 .btn-wa{background:#f5c518;color:#000;padding:10px 20px;border-radius:30px;font-weight:800;text-decoration:none;font-size:14px}
-.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:8px;background:#000}
-.hero-grid img{width:100%;height:180px;object-fit:cover;border-radius:16px;transition:opacity 1s ease;background:#111}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:8px}
+.hero-grid img{width:100%;height:180px;object-fit:cover;border-radius:16px;transition:opacity 1s ease}
 .latest-title{padding:28px 16px 8px;font-size:28px;font-weight:900;font-family:serif}
 .poems{padding:0 12px 40px}
 .card{background:#121212;border:1px solid #222;border-radius:18px;padding:18px;margin:14px 0}
 .card h3{color:#f5c518;font-size:18px;margin-bottom:10px}
 .card p{white-space:pre-line;line-height:1.7;color:#e5e5e5;font-size:14.5px}
-.card .meta{margin-top:12px;font-size:12px;color:#777}
-footer{padding:30px 16px;text-align:center;color:#888;font-size:13px;border-top:1px solid #222;line-height:1.6}
-footer b{color:#aaa}
+.actions{display:flex;gap:12px;margin-top:14px;padding-top:12px;border-top:1px solid #222}
+.action-btn{background:#1e1e1e;border:1px solid #333;color:#fff;padding:8px 16px;border-radius:20px;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px}
+.action-btn.liked{background:#f5c518;color:#000;border-color:#f5c518}
+.action-btn:hover{transform:scale(1.05)}
+.comments-box{display:none;margin-top:12px;background:#0e0e0e;border-radius:12px;padding:12px}
+.comments-box.active{display:block}
+.comment-input{width:100%;background:#1a1a1a;border:1px solid #333;color:#fff;padding:10px;border-radius:10px;font-size:13px}
+.comment-list{margin-top:10px;max-height:150px;overflow-y:auto}
+.comment-item{background:#1a1a1a;padding:8px 10px;border-radius:10px;margin:6px 0;font-size:13px;color:#ccc}
+footer{padding:30px 16px;text-align:center;color:#888;font-size:13px;border-top:1px solid #222}
 </style>
 </head>
 <body>
 
 <header>
 <div class="logo"><span>PAUL</span> POETRY</div>
-<a class="btn-wa" href="https://wa.me/256709478798?text=Hi%20Paul%20I%20love%20your%20poems">WhatsApp Me</a>
+<a class="btn-wa" href="https://wa.me/256709478798">WhatsApp Me</a>
 </header>
 
 <div class="hero-grid" id="heroGrid">
@@ -40,11 +47,7 @@ footer b{color:#aaa}
 <div class="latest-title">Latest Poems 🔥</div>
 <div class="poems" id="poemsContainer"></div>
 
-<footer>
-<b>Paul McRae • Kampala, Uganda • Romantic Poet</b><br>
-WhatsApp +256709478798 • TikTok<br>
-vt.tiktok.com/ZSgjB8pQT/ • © 2026 Made with ❤️ in Kampala
-</footer>
+<footer><b>Paul McRae • Kampala • Romantic Poet</b><br>© 2026 Made with ❤️</footer>
 
 <script>
 const poems = [
@@ -519,12 +522,64 @@ In every low-battery unknown,
 I'll know what love will do,
 It charges without asking.`}
 ];
+
 const container = document.getElementById('poemsContainer');
-container.innerHTML = poems.map(p=>`
-<div class="card"><h3>${p.title}</h3><p>${p.text}</p><div class="meta">❤️ Paul McRae • 8 stanzas • Daily Love</div></div>
+container.innerHTML = poems.map((p,i)=>`
+<div class="card" id="poem-${i}">
+<h3>${p.title}</h3>
+<p>${p.text}</p>
+<div class="actions">
+<button class="action-btn" onclick="likePoem(${i})" id="like-${i}">❤️ <span id="like-count-${i}">0</span> Like</button>
+<button class="action-btn" onclick="sharePoem(${i})">↗️ Share</button>
+<button class="action-btn" onclick="toggleComments(${i})">💬 Comment</button>
+</div>
+<div class="comments-box" id="comments-${i}">
+<input class="comment-input" placeholder="Write a comment... press Enter" onkeypress="addComment(event,${i})" id="input-${i}">
+<div class="comment-list" id="list-${i}"></div>
+</div>
+</div>
 `).join('');
 
-// === RANDOM IMAGES EVERY 1 MINUTE ===
+function likePoem(i){
+ let likes = JSON.parse(localStorage.getItem('likes')||'{}');
+ likes[i] = (likes[i]||0)+1;
+ localStorage.setItem('likes',JSON.stringify(likes));
+ document.getElementById('like-count-'+i).innerText=likes[i];
+ document.getElementById('like-'+i).classList.add('liked');
+}
+function sharePoem(i){
+ const url = window.location.href;
+ const text = poems[i].title + " - Paul Poetry: " + url;
+ const wa = "https://wa.me/?text="+encodeURIComponent(text);
+ window.open(wa,'_blank');
+ if(navigator.share){ navigator.share({title:poems[i].title,text:text,url:url}); }
+}
+function toggleComments(i){
+ document.getElementById('comments-'+i).classList.toggle('active');
+}
+function addComment(e,i){
+ if(e.key==='Enter' && e.target.value.trim()!==''){
+   let comments = JSON.parse(localStorage.getItem('comments')||'{}');
+   if(!comments[i]) comments[i]=[];
+   comments[i].push(e.target.value);
+   localStorage.setItem('comments',JSON.stringify(comments));
+   renderComments(i);
+   e.target.value='';
+ }
+}
+function renderComments(i){
+ let comments = JSON.parse(localStorage.getItem('comments')||'{}');
+ const list = document.getElementById('list-'+i);
+ if(comments[i]) list.innerHTML = comments[i].map(c=>`<div class="comment-item">💬 ${c}</div>`).join('');
+}
+(function loadSaved(){
+ let likes = JSON.parse(localStorage.getItem('likes')||'{}');
+ let comments = JSON.parse(localStorage.getItem('comments')||'{}');
+ Object.keys(likes).forEach(i=>{ if(document.getElementById('like-count-'+i)) document.getElementById('like-count-'+i).innerText=likes[i]; });
+ Object.keys(comments).forEach(i=>renderComments(i));
+})();
+
+// RANDOM IMAGES EVERY 1 MINUTE
 const pool = [
 "https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=800",
 "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=800",
@@ -535,13 +590,4 @@ const pool = [
 ];
 function rotate(){
  document.querySelectorAll('#heroGrid img').forEach(img=>{
-  const r = pool[Math.floor(Math.random()*pool.length)];
-  img.style.opacity="0";
-  setTimeout(()=>{img.src=r; img.style.opacity="1";},600);
- });
-}
-setInterval(rotate,60000);
-setTimeout(rotate,3000);
-</script>
-</body>
-</html>
+  const r = pool[Math
