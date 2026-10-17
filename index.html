@@ -97,6 +97,44 @@ function toggleComments(id){let box=document.getElementById('commentBox'+id);box
 function addComment(id){let input=document.getElementById('commentInput'+id);let text=input.value.trim();if(!text){alert('Write something!');return;}let comments=getComments(id);comments.push({name:'Poetry Lover',text:text,time:new Date().toLocaleDateString()+' '+new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})});localStorage.setItem('paul_comments_'+id,JSON.stringify(comments));input.value='';renderCommentsList(id);document.getElementById('commentCount'+id).innerText=comments.length;}
 function copyPoem(id){let p=poemsToShow.find(x=>x.id==id);navigator.clipboard.writeText(p.title+"\n\n"+p.body+"\n\n— Paul Poetry paul-mcrae.github.io/POETRY-/").then(()=>alert('Copied! Share on TikTok!'));}
 render();
+  <script>
+// === PAUL RANDOM IMAGE ROTATION - 1 MINUTE ===
+const poemImages = [
+  "https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=800",
+  "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=800",
+  "https://images.unsplash.com/photo-1529634597503-139d3726fed5?w=800",
+  "https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=800",
+  "https://images.unsplash.com/photo-1474552226712-ac0f0961a954?w=800",
+  "https://images.unsplash.com/photo-1494774157365-9e04c6720e47?w=800",
+  "https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?w=800",
+  "https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=800"
+];
+
+// CHANGE ALL IMAGES EVERY 1 MINUTE
+function changeRandomImages() {
+  const images = document.querySelectorAll('img');
+  images.forEach(img => {
+    // Don't change logo/icons
+    if(img.src.includes('logo') || img.width < 100) return;
+    
+    const randomImg = poemImages[Math.floor(Math.random() * poemImages.length)];
+    img.style.transition = "opacity 0.8s ease";
+    img.style.opacity = "0";
+    setTimeout(() => {
+      img.src = randomImg;
+      img.style.opacity = "1";
+    }, 800);
+  });
+}
+
+// Run every 60 seconds (1 minute)
+setInterval(changeRandomImages, 60000);
+
+// Run once after 3 seconds to test
+setTimeout(changeRandomImages, 3000);
+
+console.log("✅ Random images active - changes every 1 min");
+</script>
 </script>
 </body>
 </html>
