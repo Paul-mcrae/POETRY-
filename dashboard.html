@@ -3,171 +3,165 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Paul Control Center - Best Dashboard</title>
+<title>Paul Control - V3 Ultimate</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
 <style>
-:root{--gold:#ffcc66;--bg:#08070a;--card:#131217;--card2:#1a1920;--line:#23222a;--text:#f5f3ef;--muted:#9a99a5;--green:#25D366;--red:#ff4d6d}
+:root{--gold:#ffcc66;--bg:#08070a;--card:#131217;--card2:#1b1a21;--line:#26252e;--text:#f5f3ef;--muted:#9a99a5}
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif}
 h1,h2{font-family:'Playfair Display',serif}
-.nav{position:sticky;top:0;z-index:20;background:rgba(8,7,10,0.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--line);padding:14px 20px;display:flex;justify-content:space-between;align-items:center}
-.logo{font-weight:900;letter-spacing:1px}.logo b{color:var(--gold)}
-.main{max-width:1280px;margin:0 auto;padding:20px;display:grid;grid-template-columns:220px 1fr;gap:18px}
-@media(max-width:900px){.main{grid-template-columns:1fr}.side{display:none}}
-.side{position:sticky;top:76px;height:fit-content}
-.menu{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:10px}
-.menu a{display:block;padding:12px 14px;border-radius:12px;color:var(--muted);font-size:13px;font-weight:600;text-decoration:none;cursor:pointer}
-.menu a.active{background:var(--card2);color:var(--text);border:1px solid var(--line)}
-.menu a b{color:var(--gold)}
-.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px;margin-bottom:16px}
-.btn{padding:10px 18px;border-radius:999px;background:var(--gold);color:#111;font-weight:800;font-size:13px;border:none;cursor:pointer;display:inline-block;text-decoration:none}
+.nav{position:sticky;top:0;z-index:30;background:rgba(8,7,10,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--line);padding:12px 16px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-weight:900;letter-spacing:1px;font-size:14px}.logo b{color:var(--gold)}
+.main{max-width:1280px;margin:0 auto;padding:16px;display:grid;grid-template-columns:240px 1fr;gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px;margin-bottom:14px}
+.btn{padding:10px 16px;border-radius:999px;background:var(--gold);color:#111;font-weight:800;font-size:12px;border:none;cursor:pointer}
 .btn-dark{background:var(--card2);color:#fff;border:1px solid var(--line)}
-.input,textarea,select{width:100%;padding:12px 14px;border-radius:12px;background:#1b1a21;border:1px solid #2a2932;color:#fff;margin-top:8px;font-size:14px;font-family:'Inter'}
-.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-@media(max-width:700px){.grid4{grid-template-columns:1fr 1fr}}
-.stat{padding:18px;border-radius:18px;background:linear-gradient(135deg,#1a1920,#131217);border:1px solid var(--line);position:relative;overflow:hidden}
-.stat:before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0.5}
-.stat b{font-size:26px;color:var(--text);display:block}.stat span{font-size:11px;color:var(--muted);letter-spacing:0.5px;text-transform:uppercase}
-.stat .trend{font-size:11px;color:#4ade80;margin-top:6px}
-.chart{height:120px;display:flex;align-items:end;gap:6px;margin-top:14px}
-.bar{flex:1;background:linear-gradient(to top,var(--gold),#ff8a6e);border-radius:6px 6px 0 0;min-height:10px}
-.poem-row{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;padding:14px;border:1px solid var(--line);border-radius:14px;margin-top:10px;background:#121116}
-.login{max-width:400px;margin:80px auto;text-align:center;padding:20px}
+.input,textarea,select{width:100%;padding:11px 12px;border-radius:12px;background:#1b1a21;border:1px solid #2a2932;color:#fff;margin-top:6px;font-size:13px;font-family:'Inter'}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+@media(max-width:900px){.main{grid-template-columns:1fr}.grid4{grid-template-columns:1fr 1fr}}
+.menu{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:8px}
+.menu button{width:100%;text-align:left;padding:11px 12px;border-radius:12px;background:transparent;color:var(--muted);font-size:13px;font-weight:600;border:none;cursor:pointer;display:block;margin-bottom:2px}
+.menu button.active{background:var(--card2);color:var(--text);border:1px solid var(--line)}
+.mobile-tabs{display:none;gap:8px;overflow:auto;padding-bottom:8px;margin-bottom:12px}
+.mobile-tabs button{white-space:nowrap;padding:8px 14px;border-radius:999px;background:var(--card);border:1px solid var(--line);color:var(--muted);font-size:12px;font-weight:700}
+.mobile-tabs button.active{background:var(--gold);color:#111;border-color:var(--gold)}
+@media(max-width:900px){.side{display:none}.mobile-tabs{display:flex}}
+.stat{padding:16px;border-radius:16px;background:linear-gradient(135deg,#1a1920,#131217);border:1px solid var(--line)}
+.stat b{font-size:22px;display:block}.stat span{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.8px}
+.poem-row{padding:12px;border:1px solid var(--line);border-radius:14px;margin-top:10px;background:#121116;display:flex;flex-direction:column;gap:8px}
+.login{max-width:400px;margin:70px auto;text-align:center;padding:20px}
 .hidden{display:none!important}
-.badge{padding:4px 10px;border-radius:999px;background:#222;color:var(--gold);font-size:11px;font-weight:700;border:1px solid #333}
+.badge{padding:4px 9px;border-radius:999px;background:#222;color:var(--gold);font-size:10px;font-weight:700;border:1px solid #333}
+.top-actions{display:flex;gap:6px;flex-wrap:wrap}
 </style>
 </head>
 <body>
 
-<!-- LOGIN -->
 <div id="loginScreen" class="login">
-<div style="font-size:50px">👑</div>
-<h1 style="font-size:32px;margin-top:10px">PAUL CONTROL</h1>
-<p style="color:var(--muted);margin:8px 0 20px;font-size:14px">Best Dashboard for Poets • Secure</p>
+<div style="font-size:48px">👑</div>
+<h1 style="font-size:30px;margin-top:8px">PAUL CONTROL V3</h1>
+<p style="color:var(--muted);font-size:13px;margin:6px 0 18px">Ultimate Dashboard - Fixed for Phone</p>
 <div class="card" style="text-align:left">
-<label style="font-size:12px;color:var(--muted)">PASSWORD</label>
-<input id="passInput" type="password" class="input" placeholder="Enter password">
-<button class="btn" style="width:100%;margin-top:14px;padding:14px" onclick="login()">Unlock Dashboard →</button>
-<p id="loginError" style="color:var(--red);font-size:12px;margin-top:10px;display:none">Wrong password. Try paul2026</p>
-<p style="font-size:11px;color:var(--muted);margin-top:10px;text-align:center">Default: paul2026 • Change it inside dashboard</p>
+<input id="passInput" type="password" class="input" placeholder="Password - paul2026">
+<button class="btn" style="width:100%;margin-top:12px;padding:13px" onclick="login()">Unlock →</button>
+<p id="loginError" style="color:#ff6e6e;font-size:12px;margin-top:8px;display:none">Wrong password</p>
 </div>
+<a href="index.html" style="font-size:13px;color:var(--gold)">← Back to site</a>
 </div>
 
-<!-- APP -->
 <div id="app" class="hidden">
 <div class="nav">
-<div class="logo"><b>PAUL</b> • CONTROL CENTER</div>
-<div style="display:flex;gap:8px;align-items:center">
-<span style="font-size:11px;color:var(--muted)" id="liveTime"></span>
-<a class="btn btn-dark" href="index.html" target="_blank">View Site</a>
-<button class="btn btn-dark" onclick="logout()">Logout</button>
-</div>
+<div class="logo"><b>PAUL</b> CONTROL V3</div>
+<div class="top-actions"><a class="btn btn-dark" href="index.html" target="_blank">View Site</a><button class="btn btn-dark" onclick="logout()">Logout</button></div>
 </div>
 
 <div class="main">
 <div class="side">
 <div class="menu">
-<a class="active" onclick="showTab('overview')">📊 Overview</a>
-<a onclick="showTab('poems')">📜 My Poems <b id="menuPoemCount">(4)</b></a>
-<a onclick="showTab('add')">✍️ Write New</a>
-<a onclick="showTab('messages')">💬 Messages</a>
-<a onclick="showTab('settings')">⚙️ Settings</a>
-<a onclick="showTab('links')">🔗 My Links</a>
+<button class="active" id="btn-overview" onclick="showTab('overview')">📊 Overview</button>
+<button id="btn-poems" onclick="showTab('poems')">📜 Poems <span id="menuCount">(4)</span></button>
+<button id="btn-add" onclick="showTab('add')">✍️ Write New</button>
+<button id="btn-site" onclick="showTab('site')">🎨 Edit Site Text</button>
+<button id="btn-images" onclick="showTab('images')">🖼️ Images</button>
+<button id="btn-links" onclick="showTab('links')">🔗 Links & Backup</button>
+<button id="btn-settings" onclick="showTab('settings')">⚙️ Settings</button>
 </div>
-<div class="card" style="margin-top:12px">
-<p style="font-size:12px;color:var(--muted)">YOUR BRAND</p>
-<b style="font-size:14px">Paul McRae</b>
-<p style="font-size:12px;color:var(--muted);margin-top:4px">Kampala • Romantic Poet<br>paulkaganda957@gmail.com<br>+256709478798</p>
-<div style="margin-top:10px;display:flex;gap:6px;flex-wrap:wrap">
-<span class="badge">4 Poems</span><span class="badge">Pro Plan</span>
-</div>
+<div class="card" style="margin-top:10px">
+<b style="font-size:13px">Paul McRae</b><p style="font-size:11px;color:var(--muted);margin-top:4px">paulkaganda957@gmail.com<br>+256709478798<br>TikTok: Z S g j B 8 p Q T</p>
+<button class="btn btn-dark" style="width:100%;margin-top:10px;font-size:11px" onclick="exportData()">📦 Export Backup</button>
 </div>
 </div>
 
 <div class="content">
+<div class="mobile-tabs">
+<button class="active" onclick="showTab('overview')">📊 Overview</button>
+<button onclick="showTab('poems')">📜 Poems</button>
+<button onclick="showTab('add')">✍️ Write</button>
+<button onclick="showTab('site')">🎨 Site</button>
+<button onclick="showTab('images')">🖼️ Images</button>
+<button onclick="showTab('links')">🔗 Links</button>
+<button onclick="showTab('settings')">⚙️</button>
+</div>
 
-<!-- OVERVIEW -->
 <div id="tab-overview">
 <div class="grid4">
-<div class="stat"><span>Total Views</span><b id="views">1,247</b><div class="trend">↗ +12% this week</div></div>
-<div class="stat"><span>Total Likes 💓</span><b id="totalLikes">115</b><div class="trend">↗ +8 likes today</div></div>
-<div class="stat"><span>Comments 💬</span><b>18</b><div class="trend">↗ 3 new</div></div>
-<div class="stat"><span>Earnings</span><b>$0</b><div class="trend">Start selling custom poems</div></div>
+<div class="stat"><span>Total Views</span><b id="viewsCount">0</b><span style="color:#4ade80;margin-top:4px;display:block">live counter</span></div>
+<div class="stat"><span>Total Likes</span><b id="totalLikes">0</b><span style="color:var(--muted);margin-top:4px;display:block">💓 from local</span></div>
+<div class="stat"><span>Poems</span><b id="poemTotal">0</b><span style="margin-top:4px;display:block">editable</span></div>
+<div class="stat"><span>Site Status</span><b style="color:#4ade80">LIVE</b><span style="margin-top:4px;display:block">paul-mcrae.github.io</span></div>
 </div>
-
-<div style="display:grid;grid-template-columns:1.5fr 1fr;gap:16px;margin-top:16px">
-<div class="card">
-<h2 style="font-size:18px">📈 Weekly Performance</h2>
-<div class="chart">
-<div class="bar" style="height:40%"></div><div class="bar" style="height:60%"></div><div class="bar" style="height:45%"></div><div class="bar" style="height:80%"></div><div class="bar" style="height:65%"></div><div class="bar" style="height:90%"></div><div class="bar" style="height:75%"></div>
-</div>
-<div style="display:flex;justify-content:space-between;margin-top:8px;font-size:10px;color:var(--muted)"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div>
+<div class="card" style="margin-top:12px">
+<h2 style="font-size:16px">🔥 Quick Fix for Phone - Test Tabs Above!</h2>
+<p style="font-size:12px;color:var(--muted);margin-top:6px">Now on phone you can see tabs at top - no more hidden menu! Tap Write, Poems, Links etc.</p>
 </div>
 <div class="card">
-<h2 style="font-size:18px">🔥 Top Poem</h2>
-<div style="margin-top:12px;padding:14px;background:#121116;border-radius:12px;border:1px solid var(--line)">
-<b>In Small Letters</b>
-<p style="font-size:12px;color:var(--muted);margin-top:4px">Poets' Favorite • 42 likes • Most saved on TikTok</p>
-<div style="margin-top:8px"><span class="badge">Trending #1</span></div>
-</div>
-<p style="font-size:11px;color:var(--muted);margin-top:10px">Tip: Post this poem on TikTok with audio today!</p>
+<h2 style="font-size:16px">📈 What to Post Today</h2>
+<div style="margin-top:10px;display:grid;gap:8px">
+<div style="padding:10px;background:#121116;border:1px solid var(--line);border-radius:10px;font-size:12px">✅ Post <b>In Small Letters</b> on TikTok - highest likes (42) → Add link to bio</div>
+<div style="padding:10px;background:#121116;border:1px solid var(--line);border-radius:10px;font-size:12px">✅ WhatsApp Status: Share your site link with message "New poems - tap to read"</div>
 </div>
 </div>
 </div>
 
-<!-- POEMS -->
 <div id="tab-poems" class="hidden">
 <div class="card">
-<div style="display:flex;justify-content:space-between;align-items:center"><h2 style="font-size:20px">📜 Manage Poems</h2><button class="btn" onclick="showTab('add')">+ New Poem</button></div>
-<div id="poemManageList" style="margin-top:14px"></div>
+<div style="display:flex;justify-content:space-between;align-items:center"><h2 style="font-size:18px">📜 All Poems - Edit & Delete</h2><button class="btn" onclick="showTab('add')">+ New</button></div>
+<input id="searchPoems" class="input" placeholder="🔍 Search poems..." oninput="renderPoems()">
+<div id="poemList"></div>
 </div>
 </div>
 
-<!-- ADD -->
 <div id="tab-add" class="hidden">
 <div class="card">
-<h2 style="font-size:20px">✍️ Write New Masterpiece</h2>
-<p style="font-size:12px;color:var(--muted);margin-top:4px">This will instantly save to your dashboard and generate code for website</p>
-<div style="margin-top:14px">
-<label style="font-size:12px;color:var(--muted)">TITLE</label><input id="newTitle" class="input" placeholder="e.g. Still Waiting at Midnight">
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px"><div><label style="font-size:12px;color:var(--muted)">MOOD TAG</label><select id="newMood" class="input"><option>Romantic • Most Loved ❤</option><option>Romantic • 2 AM</option><option>Deep Love</option><option>Poets' Favorite</option><option>Sad • Healing</option><option>Love Letter</option></select></div><div><label style="font-size:12px;color:var(--muted)">LIKES START</label><input id="newLikes" class="input" type="number" value="0"></div></div>
-<label style="font-size:12px;color:var(--muted);margin-top:10px;display:block">POEM BODY</label><textarea id="newBody" class="input" style="height:160px" placeholder="Write your poem here...&#10;Use short lines&#10;For impact"></textarea>
-<button class="btn" style="width:100%;margin-top:14px;padding:14px" onclick="savePoem()">Save Poem to Dashboard + Generate Website Code</button>
-<div id="genCode" class="hidden" style="margin-top:14px;background:#0e0d11;border:1px solid #2a2932;padding:14px;border-radius:12px;font-size:11px;white-space:pre-wrap;word-break:break-all"></div>
-</div>
+<h2 style="font-size:18px">✍️ Write / Edit Poem</h2>
+<input type="hidden" id="editId">
+<input id="newTitle" class="input" placeholder="Title">
+<select id="newMood" class="input"><option>Most Loved ❤</option><option>Romantic • 2 AM</option><option>Deep Love</option><option>Poets' Favorite</option><option>Love Letter</option><option>Sad • Healing</option></select>
+<textarea id="newBody" class="input" style="height:140px" placeholder="Poem body..."></textarea>
+<input id="newLikes" class="input" type="number" placeholder="Likes count" value="0">
+<div style="display:flex;gap:8px;margin-top:10px"><button class="btn" style="flex:1;padding:13px" onclick="savePoem()">💾 Save to Dashboard</button><button class="btn btn-dark" style="flex:1" onclick="clearForm()">Clear</button></div>
+<div id="genCode" class="hidden" style="margin-top:12px;background:#0e0d11;border:1px solid #2a2932;padding:12px;border-radius:12px;font-size:11px;white-space:pre-wrap"></div>
 </div>
 </div>
 
-<!-- MESSAGES -->
-<div id="tab-messages" class="hidden">
+<div id="tab-site" class="hidden">
 <div class="card">
-<h2 style="font-size:20px">💬 Inquiries & Custom Poem Requests</h2>
-<div style="margin-top:12px">
-<div class="poem-row"><div><b>Potential client</b><p style="font-size:12px;color:var(--muted)">Hi Paul, I want a custom love poem for anniversary ❤️ - from WhatsApp</p></div><span class="badge">WhatsApp</span></div>
-<div class="poem-row"><div><b>Poetry lover</b><p style="font-size:12px;color:var(--muted)">Your poems are amazing! Keep writing - from Email</p></div><span class="badge">Email</span></div>
-<div class="card" style="background:#121116;margin-top:14px;text-align:center"><p style="font-size:13px">Real messages will come to:</p><p style="margin-top:6px"><b>WhatsApp:</b> +256709478798<br><b>Email:</b> paulkaganda957@gmail.com</p><p style="font-size:11px;color:var(--muted);margin-top:8px">People click buttons on your website → they message you here</p></div>
-</div>
+<h2 style="font-size:18px">🎨 Edit Site Texts (Live Site)</h2>
+<p style="font-size:11px;color:var(--muted);margin:6px 0">Change hero headline, subtext - then copy to index.html</p>
+<label style="font-size:11px;color:var(--muted)">Hero Title</label><input id="siteHeroTitle" class="input" value="Love letters that never sent">
+<label style="font-size:11px;color:var(--muted)">Hero Subtitle</label><input id="siteHeroSub" class="input" value="I'm Paul from Kampala. 4 romantic poems poets love - like & comment!">
+<label style="font-size:11px;color:var(--muted)">About Text</label><input id="siteAbout" class="input" value="Poet from Kampala • WhatsApp: +256709478798">
+<button class="btn" style="margin-top:10px" onclick="alert('Copy these texts and paste in index.html hero section. I can generate full new index.html if you want - tell me YES')">Save Site Text (Local)</button>
 </div>
 </div>
 
-<!-- SETTINGS -->
-<div id="tab-settings" class="hidden">
+<div id="tab-images" class="hidden">
 <div class="card">
-<h2 style="font-size:20px">⚙️ Settings</h2>
-<div style="margin-top:14px">
-<label style="font-size:12px;color:var(--muted)">Change Dashboard Password</label><input id="newPassInput" class="input" placeholder="New password - e.g. PaulLove2026">
-<button class="btn" style="margin-top:10px" onclick="changePass()">Save New Password</button>
-<div style="margin-top:20px"><label style="font-size:12px;color:var(--muted)">Your Info</label><input class="input" value="Paul McRae - Kampala, Uganda"><input class="input" value="paulkaganda957@gmail.com"><input class="input" value="+256709478798"><input class="input" value="https://vt.tiktok.com/ZSgjB8pQT/"></div>
-<button class="btn btn-dark" style="margin-top:10px" onclick="alert('Saved locally! To update live site, edit index.html with new info')">Save Info (Local)</button>
-</div>
+<h2 style="font-size:18px">🖼️ Manage 6 Images</h2>
+<p style="font-size:11px;color:var(--muted);margin:6px 0">Replace any image with your own photo - paste new image URL</p>
+<div id="imgList"></div>
 </div>
 </div>
 
-<!-- LINKS -->
 <div id="tab-links" class="hidden">
 <div class="card">
-<h2 style="font-size:20px">🔗 All Your Links - One Click Copy</h2>
-<div id="linksList" style="margin-top:14px;display:flex;flex-direction:column;gap:10px"></div>
+<h2 style="font-size:18px">🔗 Links + Backup</h2>
+<div id="linksList" style="margin-top:10px;display:flex;flex-direction:column;gap:8px"></div>
+<div style="margin-top:16px;padding:12px;background:#121116;border-radius:12px;border:1px solid var(--line)">
+<b style="font-size:13px">📦 Backup Your Poems</b><p style="font-size:11px;color:var(--muted);margin:6px 0">Download all poems as JSON - safe forever</p>
+<div style="display:flex;gap:8px"><button class="btn" onclick="exportData()">Export JSON</button><button class="btn btn-dark" onclick="document.getElementById('importFile').click()">Import JSON</button><input type="file" id="importFile" style="display:none" onchange="importData(event)"></div>
+</div>
+</div>
+</div>
+
+<div id="tab-settings" class="hidden">
+<div class="card">
+<h2 style="font-size:18px">⚙️ Settings</h2>
+<label style="font-size:11px;color:var(--muted)">New Password</label><input id="newPassInput" class="input" placeholder="e.g. Paul2026Love">
+<button class="btn" style="margin-top:8px" onclick="changePass()">Change Password</button>
+<div style="margin-top:16px">
+<label style="font-size:11px;color:var(--muted)">Reset Dashboard</label><br><button class="btn btn-dark" style="margin-top:6px" onclick="if(confirm('Reset all?')){localStorage.clear();location.reload();}">🗑️ Reset All Data</button>
+</div>
 </div>
 </div>
 
@@ -176,49 +170,103 @@ h1,h2{font-family:'Playfair Display',serif}
 </div>
 
 <script>
-let poems = JSON.parse(localStorage.getItem('paul_poems_v2') || 'null') || [
+let poems = JSON.parse(localStorage.getItem('paul_poems_v3') || 'null') || [
 {id:1,title:"How I Remember You",mood:"Most Loved ❤",likes:24,body:"Not in the big moments,\nbut in the small ones.\n\nHow you fix your hair\nwhen you're nervous.\nHow you laugh\nwhen you try not to.\n\nI fell in love\nin the details,\nand that's where I still live."},
 {id:2,title:"If Love Had a Voice",mood:"Romantic • 2 AM",likes:18,body:"If love had a voice,\nit would sound like your name\nat 2 AM\nwhen the world is asleep\nand my heart is not.\n\nIt would whisper,\n\"stay,\"\nand I would."},
 {id:3,title:"The Coffee Gets Cold",mood:"Deep Love",likes:31,body:"I make coffee for two,\neven when you're not here.\nI watch mine get cold,\nwaiting.\n\nBecause love, I learned,\nis not about\nwho arrives first.\nIt's about\nwho keeps the seat warm."},
 {id:4,title:"In Small Letters",mood:"Poets' Favorite",likes:42,body:"I don't need you\nto shout my name\nfrom rooftops.\n\nJust write it\nin small letters,\nin the corner\nof your day.\n\nLike,\n\"thinking of Paul\"\nbetween errands.\n\nThat's enough.\nThat's everything."}
 ];
-
+let images = JSON.parse(localStorage.getItem('paul_images') || 'null') || [
+"https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=600",
+"https://images.unsplash.com/photo-1529634597503-139d3726fed5?q=80&w=600",
+"https://images.unsplash.com/photo-1474552226712-ac0f0961a954?q=80&w=600",
+"https://images.unsplash.com/photo-1494774157365-9e04c6720e47?q=80&w=600",
+"https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?q=80&w=600",
+"https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?q=80&w=600"
+];
 let DASH_PASS = localStorage.getItem('paul_dash_pass') || 'paul2026';
 function login(){ if(document.getElementById('passInput').value===DASH_PASS){ localStorage.setItem('paul_logged','yes'); showApp(); } else { document.getElementById('loginError').style.display='block'; } }
-function showApp(){ document.getElementById('loginScreen').classList.add('hidden'); document.getElementById('app').classList.remove('hidden'); renderAll(); setInterval(()=>{ document.getElementById('liveTime').innerText=new Date().toLocaleTimeString(); },1000); }
+function showApp(){
+  document.getElementById('loginScreen').classList.add('hidden');
+  document.getElementById('app').classList.remove('hidden');
+  let v=parseInt(localStorage.getItem('paul_views')||'1247'); v++; localStorage.setItem('paul_views',v);
+  renderAll();
+}
 function logout(){ localStorage.removeItem('paul_logged'); location.reload(); }
-function showTab(name){ document.querySelectorAll('[id^=tab-]').forEach(e=>e.classList.add('hidden')); document.getElementById('tab-'+name).classList.remove('hidden'); document.querySelectorAll('.menu a').forEach(a=>a.classList.remove('active')); event.target.classList.add('active'); }
+function showTab(name){
+  document.querySelectorAll('[id^=tab-]').forEach(e=>e.classList.add('hidden'));
+  document.getElementById('tab-'+name).classList.remove('hidden');
+  document.querySelectorAll('.menu button, .mobile-tabs button').forEach(b=>b.classList.remove('active'));
+  let b=document.getElementById('btn-'+name); if(b) b.classList.add('active');
+}
 function renderAll(){
-  let list=document.getElementById('poemManageList'); list.innerHTML='';
-    poems.forEach(p=>{
-        let div=document.createElement('div'); div.className='poem-row';
-            div.innerHTML=`<div><b>${p.title}</b><br><span style="font-size:11px;color:var(--muted)">${p.mood} • 💓 ${p.likes}</span><p style="font-size:12px;color:var(--muted);margin-top:4px;white-space:pre-line">${p.body.slice(0,80)}...</p></div><div style="display:flex;flex-direction:column;gap:6px"><button class="btn btn-dark" style="padding:6px 10px;font-size:11px" onclick="deletePoem(${p.id})">Delete</button><button class="btn" style="padding:6px 10px;font-size:11px" onclick="copyPoemCode(${p.id})">Copy Code</button></div>`;
-                list.appendChild(div);
-                  });
-                    document.getElementById('menuPoemCount').innerText='('+poems.length+')';
-                      let total=poems.reduce((a,b)=>a+b.likes,0); document.getElementById('totalLikes').innerText=total;
-                        let links=document.getElementById('linksList'); links.innerHTML='';
-                          let linksData=[["Website","https://paul-mcrae.github.io/POETRY-/"],["WhatsApp","https://wa.me/256709478798"],["Email","paulkaganda957@gmail.com"],["TikTok","https://vt.tiktok.com/ZSgjB8pQT/"],["Direct WhatsApp Message","https://wa.me/256709478798?text=Hi Paul, I want a custom poem ❤️"]];
-                            linksData.forEach(l=>{ let d=document.createElement('div'); d.style.cssText='display:flex;justify-content:space-between;align-items:center;background:#121116;padding:12px;border-radius:12px;border:1px solid var(--line)'; d.innerHTML=`<div><b style="font-size:13px">${l[0]}</b><br><span style="font-size:11px;color:var(--muted)">${l[1]}</span></div><button class="btn" style="padding:6px 12px;font-size:11px" onclick="navigator.clipboard.writeText('${l[1]}').then(()=>alert('Copied!'))">Copy</button>`; links.appendChild(d); });
-                            }
-                            function savePoem(){
-                              let title=document.getElementById('newTitle').value.trim();
-                                let mood=document.getElementById('newMood').value;
-                                  let body=document.getElementById('newBody').value.trim();
-                                    let likes=parseInt(document.getElementById('newLikes').value)||0;
-                                      if(!title||!body){ alert('Add title and poem'); return; }
-                                        let newId=poems.length?Math.max(...poems.map(p=>p.id))+1:1;
-                                          poems.push({id:newId,title,mood,likes,body});
-                                            localStorage.setItem('paul_poems_v2',JSON.stringify(poems));
-                                              renderAll();
-                                                let code=`<div class="card">\n<span class="mood">${mood}</span>\n<h3>${title}</h3>\n<p id="poem${newId}">${body}</p>\n<div class="actions">\n<div class="left-act">\n<button class="act-btn" id="like${newId}" onclick="likePoem(${newId})"><span>💓</span><b id="count${newId}">${likes}</b></button>\n<button class="act-btn" onclick="showComments(${newId})"><span>💬</span><b>0</b></button>\n<button class="act-btn" onclick="copyPoem(${newId})">🔗 Copy</button>\n</div>\n</div>\n</div>`;
-                                                  let out=document.getElementById('genCode'); out.innerText="✅ SAVED TO DASHBOARD!\n\nNow copy this code and paste it into index.html inside <div class=\"grid\"> section:\n\n"+code; out.classList.remove('hidden');
-                                                    alert('Poem saved to dashboard! Now copy code below and add to index.html');
-                                                    }
-                                                    function deletePoem(id){ if(confirm('Delete this poem?')){ poems=poems.filter(p=>p.id!==id); localStorage.setItem('paul_poems_v2',JSON.stringify(poems)); renderAll(); } }
-                                                    function copyPoemCode(id){ let p=poems.find(x=>x.id===id); let code=`Title: ${p.title}\nMood: ${p.mood}\n\n${p.body}`; navigator.clipboard.writeText(code).then(()=>alert('Copied!')); }
-                                                    function changePass(){ let np=document.getElementById('newPassInput').value.trim(); if(np.length<4){ alert('Password too short'); return; } localStorage.setItem('paul_dash_pass',np); DASH_PASS=np; alert('Password changed to: '+np+' - Remember it!'); }
-                                                    if(localStorage.getItem('paul_logged')==='yes'){ showApp(); }
-                                                    </script>
-                                                    </body>
-                                                    </html>
+  document.getElementById('viewsCount').innerText=localStorage.getItem('paul_views')||1247;
+  document.getElementById('poemTotal').innerText=poems.length;
+  document.getElementById('menuCount').innerText='('+poems.length+')';
+  document.getElementById('totalLikes').innerText=poems.reduce((a,b)=>a+b.likes,0);
+  renderPoems(); renderImages(); renderLinks();
+}
+function renderPoems(){
+  let q=(document.getElementById('searchPoems').value||'').toLowerCase();
+  let list=document.getElementById('poemList'); list.innerHTML='';
+  poems.filter(p=>p.title.toLowerCase().includes(q)||p.body.toLowerCase().includes(q)).forEach(p=>{
+    let div=document.createElement('div'); div.className='poem-row';
+    div.innerHTML=`<div><b>${p.title}</b> <span class="badge">${p.mood}</span> <span class="badge">💓 ${p.likes}</span><p style="font-size:11px;color:var(--muted);white-space:pre-line;margin-top:4px">${p.body.slice(0,120)}</p></div><div style="display:flex;gap:6px"><button class="btn btn-dark" style="font-size:11px" onclick="editPoem(${p.id})">Edit</button><button class="btn btn-dark" style="font-size:11px" onclick="deletePoem(${p.id})">Delete</button><button class="btn" style="font-size:11px" onclick="copyFullCode(${p.id})">Copy HTML</button></div>`;
+    list.appendChild(div);
+  });
+}
+function renderImages(){
+  let list=document.getElementById('imgList'); list.innerHTML='';
+  images.forEach((url,i)=>{
+    let div=document.createElement('div'); div.style.cssText='display:flex;gap:8px;align-items:center;background:#121116;padding:8px;border-radius:10px;border:1px solid var(--line);margin-top:8px';
+    div.innerHTML=`<img src="${url}" style="width:50px;height:50px;border-radius:8px;object-fit:cover"><input id="img${i}" value="${url}" class="input" style="margin:0;font-size:11px"><button class="btn" style="font-size:10px" onclick="saveImg(${i})">Save</button>`;
+    list.appendChild(div);
+  });
+}
+function renderLinks(){
+  let list=document.getElementById('linksList'); list.innerHTML='';
+  let data=[["Website","https://paul-mcrae.github.io/POETRY-/"],["WhatsApp","https://wa.me/256709478798"],["Email","paulkaganda957@gmail.com"],["TikTok","https://vt.tiktok.com/ZSgjB8pQT/"]];
+  data.forEach(d=>{ let el=document.createElement('div'); el.style.cssText='display:flex;justify-content:space-between;align-items:center;background:#121116;padding:10px;border-radius:10px;border:1px solid var(--line)'; el.innerHTML=`<div><b style="font-size:12px">${d[0]}</b><br><span style="font-size:10px;color:var(--muted)">${d[1]}</span></div><button class="btn" style="font-size:11px" onclick="navigator.clipboard.writeText('${d[1]}').then(()=>alert('Copied'))">Copy</button>`; list.appendChild(el); });
+}
+function savePoem(){
+  let id=document.getElementById('editId').value;
+  let title=document.getElementById('newTitle').value.trim();
+  let mood=document.getElementById('newMood').value;
+  let body=document.getElementById('newBody').value.trim();
+  let likes=parseInt(document.getElementById('newLikes').value)||0;
+  if(!title||!body){ alert('Add title and body'); return; }
+  if(id){
+    let p=poems.find(x=>x.id==id); p.title=title; p.mood=mood; p.body=body; p.likes=likes;
+  } else {
+    let newId=poems.length?Math.max(...poems.map(p=>p.id))+1:1;
+    poems.push({id:newId,title,mood,body,likes});
+  }
+  localStorage.setItem('paul_poems_v3',JSON.stringify(poems));
+  clearForm(); renderAll(); showTab('poems');
+  alert('Saved!');
+}
+function editPoem(id){
+  let p=poems.find(x=>x.id===id);
+  document.getElementById('editId').value=p.id;
+  document.getElementById('newTitle').value=p.title;
+  document.getElementById('newMood').value=p.mood;
+  document.getElementById('newBody').value=p.body;
+  document.getElementById('newLikes').value=p.likes;
+  showTab('add');
+}
+function deletePoem(id){ if(confirm('Delete?')){ poems=poems.filter(p=>p.id!==id); localStorage.setItem('paul_poems_v3',JSON.stringify(poems)); renderAll(); } }
+function clearForm(){ document.getElementById('editId').value=''; document.getElementById('newTitle').value=''; document.getElementById('newBody').value=''; document.getElementById('newLikes').value='0'; document.getElementById('genCode').classList.add('hidden'); }
+function copyFullCode(id){
+  let p=poems.find(x=>x.id===id);
+  let code=`<div class="card">\n<span class="mood">${p.mood}</span>\n<h3>${p.title}</h3>\n<p>${p.body}</p>\n<div class="actions"><button class="act-btn" onclick="likePoem(${p.id})">💓 ${p.likes}</button></div>\n</div>`;
+  navigator.clipboard.writeText(code).then(()=>alert('HTML copied! Paste in index.html'));
+}
+function saveImg(i){ let v=document.getElementById('img'+i).value.trim(); images[i]=v; localStorage.setItem('paul_images',JSON.stringify(images)); alert('Image '+ (i+1) +' saved! Now update index.html img src to this URL'); }
+function exportData(){ let data=JSON.stringify({poems,images},null,2); let blob=new Blob([data],{type:'application/json'}); let url=URL.createObjectURL(blob); let a=document.createElement('a'); a.href=url; a.download='paul-backup.json'; a.click(); }
+function importData(e){ let file=e.target.files[0]; let reader=new FileReader(); reader.onload=function(){ let d=JSON.parse(reader.result); poems=d.poems||poems; images=d.images||images; localStorage.setItem('paul_poems_v3',JSON.stringify(poems)); localStorage.setItem('paul_images',JSON.stringify(images)); renderAll(); alert('Imported!'); }; reader.readAsText(file); }
+function changePass(){ let np=document.getElementById('newPassInput').value.trim(); if(np.length<4){ alert('Short'); return; } localStorage.setItem('paul_dash_pass',np); alert('Password changed to: '+np); }
+if(localStorage.getItem('paul_logged')==='yes'){ showApp(); }
+</script>
+</body>
+  </html>
+                      
