@@ -98,42 +98,23 @@ function addComment(id){let input=document.getElementById('commentInput'+id);let
 function copyPoem(id){let p=poemsToShow.find(x=>x.id==id);navigator.clipboard.writeText(p.title+"\n\n"+p.body+"\n\n— Paul Poetry paul-mcrae.github.io/POETRY-/").then(()=>alert('Copied! Share on TikTok!'));}
 render();
   <script>
-// === PAUL RANDOM IMAGE ROTATION - 1 MINUTE ===
-const poemImages = [
-  "https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=800",
-  "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=800",
-  "https://images.unsplash.com/photo-1529634597503-139d3726fed5?w=800",
-  "https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=800",
-  "https://images.unsplash.com/photo-1474552226712-ac0f0961a954?w=800",
-  "https://images.unsplash.com/photo-1494774157365-9e04c6720e47?w=800",
-  "https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?w=800",
-  "https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=800"
+// === SAFE RANDOM IMAGE - ONLY HERO ===
+const heroImages = [
+  "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=1200",
+  "https://images.unsplash.com/photo-1529634597503-139d3726fed5?w=1200",
+  "https://images.unsplash.com/photo-1474552226712-ac0f0961a954?w=1200"
 ];
 
-// CHANGE ALL IMAGES EVERY 1 MINUTE
-function changeRandomImages() {
-  const images = document.querySelectorAll('img');
-  images.forEach(img => {
-    // Don't change logo/icons
-    if(img.src.includes('logo') || img.width < 100) return;
-    
-    const randomImg = poemImages[Math.floor(Math.random() * poemImages.length)];
-    img.style.transition = "opacity 0.8s ease";
-    img.style.opacity = "0";
-    setTimeout(() => {
-      img.src = randomImg;
-      img.style.opacity = "1";
-    }, 800);
-  });
+function rotateHero() {
+  const hero = document.querySelector('.hero img, #hero-img, header img');
+  if(!hero) return;
+  const random = heroImages[Math.floor(Math.random()*heroImages.length)];
+  hero.style.transition = "opacity 1s";
+  hero.style.opacity = "0";
+  setTimeout(()=>{ hero.src=random; hero.style.opacity="1"; }, 1000);
 }
 
-// Run every 60 seconds (1 minute)
-setInterval(changeRandomImages, 60000);
-
-// Run once after 3 seconds to test
-setTimeout(changeRandomImages, 3000);
-
-console.log("✅ Random images active - changes every 1 min");
+setInterval(rotateHero, 60000);
 </script>
 </script>
 </body>
