@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Paul Control - V3 Ultimate</title>
+<meta name="robots" content="noindex, nofollow">
+<title>Paul Control - Secure</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
 <style>
 :root{--gold:#ffcc66;--bg:#08070a;--card:#131217;--card2:#1b1a21;--line:#26252e;--text:#f5f3ef;--muted:#9a99a5}
@@ -11,159 +12,93 @@
 body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif}
 h1,h2{font-family:'Playfair Display',serif}
 .nav{position:sticky;top:0;z-index:30;background:rgba(8,7,10,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--line);padding:12px 16px;display:flex;justify-content:space-between;align-items:center}
-.logo{font-weight:900;letter-spacing:1px;font-size:14px}.logo b{color:var(--gold)}
-.main{max-width:1280px;margin:0 auto;padding:16px;display:grid;grid-template-columns:240px 1fr;gap:16px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px;margin-bottom:14px}
 .btn{padding:10px 16px;border-radius:999px;background:var(--gold);color:#111;font-weight:800;font-size:12px;border:none;cursor:pointer}
 .btn-dark{background:var(--card2);color:#fff;border:1px solid var(--line)}
-.input,textarea,select{width:100%;padding:11px 12px;border-radius:12px;background:#1b1a21;border:1px solid #2a2932;color:#fff;margin-top:6px;font-size:13px;font-family:'Inter'}
-.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-@media(max-width:900px){.main{grid-template-columns:1fr}.grid4{grid-template-columns:1fr 1fr}}
+.input{width:100%;padding:12px 14px;border-radius:12px;background:#1b1a21;border:1px solid #2a2932;color:#fff;margin-top:8px;font-size:13px}
+.login{max-width:400px;margin:60px auto;text-align:center;padding:20px}
+.hidden{display:none!important}
+.main{max-width:1280px;margin:0 auto;padding:16px;display:grid;grid-template-columns:240px 1fr;gap:16px}
+@media(max-width:900px){.main{grid-template-columns:1fr}}
 .menu{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:8px}
-.menu button{width:100%;text-align:left;padding:11px 12px;border-radius:12px;background:transparent;color:var(--muted);font-size:13px;font-weight:600;border:none;cursor:pointer;display:block;margin-bottom:2px}
+.menu button{width:100%;text-align:left;padding:11px 12px;border-radius:12px;background:transparent;color:var(--muted);font-size:13px;font-weight:600;border:none;cursor:pointer;margin-bottom:2px}
 .menu button.active{background:var(--card2);color:var(--text);border:1px solid var(--line)}
 .mobile-tabs{display:none;gap:8px;overflow:auto;padding-bottom:8px;margin-bottom:12px}
 .mobile-tabs button{white-space:nowrap;padding:8px 14px;border-radius:999px;background:var(--card);border:1px solid var(--line);color:var(--muted);font-size:12px;font-weight:700}
-.mobile-tabs button.active{background:var(--gold);color:#111;border-color:var(--gold)}
+.mobile-tabs button.active{background:var(--gold);color:#111}
 @media(max-width:900px){.side{display:none}.mobile-tabs{display:flex}}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+@media(max-width:700px){.grid4{grid-template-columns:1fr 1fr}}
 .stat{padding:16px;border-radius:16px;background:linear-gradient(135deg,#1a1920,#131217);border:1px solid var(--line)}
-.stat b{font-size:22px;display:block}.stat span{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.8px}
-.poem-row{padding:12px;border:1px solid var(--line);border-radius:14px;margin-top:10px;background:#121116;display:flex;flex-direction:column;gap:8px}
-.login{max-width:400px;margin:70px auto;text-align:center;padding:20px}
-.hidden{display:none!important}
-.badge{padding:4px 9px;border-radius:999px;background:#222;color:var(--gold);font-size:10px;font-weight:700;border:1px solid #333}
-.top-actions{display:flex;gap:6px;flex-wrap:wrap}
+.stat b{font-size:22px;display:block}
+.poem-row{padding:12px;border:1px solid var(--line);border-radius:14px;margin-top:10px;background:#121116}
 </style>
 </head>
 <body>
 
 <div id="loginScreen" class="login">
-<div style="font-size:48px">👑</div>
-<h1 style="font-size:30px;margin-top:8px">PAUL CONTROL V3</h1>
-<p style="color:var(--muted);font-size:13px;margin:6px 0 18px">Ultimate Dashboard - Fixed for Phone</p>
+<div style="font-size:48px">🔐</div>
+<h1 style="font-size:28px;margin-top:8px" id="loginTitle">PAUL CONTROL</h1>
+<p style="color:var(--muted);font-size:13px;margin:6px 0 18px" id="loginSub">Secure Access Only</p>
 <div class="card" style="text-align:left">
-<input id="passInput" type="password" class="input" placeholder="Password - paul2026">
+<div id="firstTimeSetup" class="hidden">
+<label style="font-size:12px;color:var(--muted)">SET YOUR SECRET PASSWORD (first time)</label>
+<input id="newPassSetup" type="password" class="input" placeholder="Create strong password">
+<input id="newPassSetup2" type="password" class="input" placeholder="Confirm password">
+<button class="btn" style="width:100%;margin-top:12px;padding:13px" onclick="setupPassword()">Save & Enter →</button>
+</div>
+<div id="normalLogin">
+<label style="font-size:12px;color:var(--muted)">PASSWORD</label>
+<input id="passInput" type="password" class="input" placeholder="Enter password">
 <button class="btn" style="width:100%;margin-top:12px;padding:13px" onclick="login()">Unlock →</button>
 <p id="loginError" style="color:#ff6e6e;font-size:12px;margin-top:8px;display:none">Wrong password</p>
 </div>
-<a href="index.html" style="font-size:13px;color:var(--gold)">← Back to site</a>
+</div>
+<p style="font-size:11px;color:var(--muted);margin-top:12px">🔒 This dashboard is hidden from Google. Only you know this link.</p>
+<a href="index.html" style="font-size:13px;color:var(--gold);display:inline-block;margin-top:10px">← Back to site</a>
 </div>
 
 <div id="app" class="hidden">
 <div class="nav">
-<div class="logo"><b>PAUL</b> CONTROL V3</div>
-<div class="top-actions"><a class="btn btn-dark" href="index.html" target="_blank">View Site</a><button class="btn btn-dark" onclick="logout()">Logout</button></div>
+<div style="font-weight:900;letter-spacing:1px;font-size:14px"><b style="color:var(--gold)">PAUL</b> CONTROL SECURE</div>
+<div style="display:flex;gap:6px"><a class="btn btn-dark" href="index.html" target="_blank">View Site</a><button class="btn btn-dark" onclick="logout()">Logout</button></div>
 </div>
-
 <div class="main">
 <div class="side">
 <div class="menu">
-<button class="active" id="btn-overview" onclick="showTab('overview')">📊 Overview</button>
-<button id="btn-poems" onclick="showTab('poems')">📜 Poems <span id="menuCount">(4)</span></button>
-<button id="btn-add" onclick="showTab('add')">✍️ Write New</button>
-<button id="btn-site" onclick="showTab('site')">🎨 Edit Site Text</button>
-<button id="btn-images" onclick="showTab('images')">🖼️ Images</button>
-<button id="btn-links" onclick="showTab('links')">🔗 Links & Backup</button>
-<button id="btn-settings" onclick="showTab('settings')">⚙️ Settings</button>
-</div>
-<div class="card" style="margin-top:10px">
-<b style="font-size:13px">Paul McRae</b><p style="font-size:11px;color:var(--muted);margin-top:4px">paulkaganda957@gmail.com<br>+256709478798<br>TikTok: Z S g j B 8 p Q T</p>
-<button class="btn btn-dark" style="width:100%;margin-top:10px;font-size:11px" onclick="exportData()">📦 Export Backup</button>
+<button class="active" onclick="showTab('overview')">📊 Overview</button>
+<button onclick="showTab('poems')">📜 Poems</button>
+<button onclick="showTab('add')">✍️ Write New</button>
+<button onclick="showTab('links')">🔗 Links & Backup</button>
+<button onclick="showTab('settings')">⚙️ Settings</button>
 </div>
 </div>
-
 <div class="content">
 <div class="mobile-tabs">
 <button class="active" onclick="showTab('overview')">📊 Overview</button>
 <button onclick="showTab('poems')">📜 Poems</button>
 <button onclick="showTab('add')">✍️ Write</button>
-<button onclick="showTab('site')">🎨 Site</button>
-<button onclick="showTab('images')">🖼️ Images</button>
 <button onclick="showTab('links')">🔗 Links</button>
 <button onclick="showTab('settings')">⚙️</button>
 </div>
 
 <div id="tab-overview">
 <div class="grid4">
-<div class="stat"><span>Total Views</span><b id="viewsCount">0</b><span style="color:#4ade80;margin-top:4px;display:block">live counter</span></div>
-<div class="stat"><span>Total Likes</span><b id="totalLikes">0</b><span style="color:var(--muted);margin-top:4px;display:block">💓 from local</span></div>
-<div class="stat"><span>Poems</span><b id="poemTotal">0</b><span style="margin-top:4px;display:block">editable</span></div>
-<div class="stat"><span>Site Status</span><b style="color:#4ade80">LIVE</b><span style="margin-top:4px;display:block">paul-mcrae.github.io</span></div>
+<div class="stat"><span style="font-size:10px;color:var(--muted)">VIEWS</span><b id="viewsCount">0</b></div>
+<div class="stat"><span style="font-size:10px;color:var(--muted)">LIKES</span><b id="totalLikes">0</b></div>
+<div class="stat"><span style="font-size:10px;color:var(--muted)">POEMS</span><b id="poemTotal">0</b></div>
+<div class="stat"><span style="font-size:10px;color:var(--muted)">STATUS</span><b style="color:#4ade80">SECURE</b></div>
 </div>
-<div class="card" style="margin-top:12px">
-<h2 style="font-size:16px">🔥 Quick Fix for Phone - Test Tabs Above!</h2>
-<p style="font-size:12px;color:var(--muted);margin-top:6px">Now on phone you can see tabs at top - no more hidden menu! Tap Write, Poems, Links etc.</p>
-</div>
-<div class="card">
-<h2 style="font-size:16px">📈 What to Post Today</h2>
-<div style="margin-top:10px;display:grid;gap:8px">
-<div style="padding:10px;background:#121116;border:1px solid var(--line);border-radius:10px;font-size:12px">✅ Post <b>In Small Letters</b> on TikTok - highest likes (42) → Add link to bio</div>
-<div style="padding:10px;background:#121116;border:1px solid var(--line);border-radius:10px;font-size:12px">✅ WhatsApp Status: Share your site link with message "New poems - tap to read"</div>
-</div>
-</div>
+<div class="card" style="margin-top:12px"><h2 style="font-size:16px">✅ Secure Mode Active</h2><p style="font-size:12px;color:var(--muted);margin-top:6px">No password hint. Dashboard is noindex - Google won't show it. Only people with link + password can enter.</p></div>
 </div>
 
-<div id="tab-poems" class="hidden">
-<div class="card">
-<div style="display:flex;justify-content:space-between;align-items:center"><h2 style="font-size:18px">📜 All Poems - Edit & Delete</h2><button class="btn" onclick="showTab('add')">+ New</button></div>
-<input id="searchPoems" class="input" placeholder="🔍 Search poems..." oninput="renderPoems()">
-<div id="poemList"></div>
-</div>
-</div>
+<div id="tab-poems" class="hidden"><div class="card"><h2 style="font-size:18px">📜 Poems</h2><input id="searchPoems" class="input" placeholder="Search..." oninput="renderPoems()"><div id="poemList"></div></div></div>
 
-<div id="tab-add" class="hidden">
-<div class="card">
-<h2 style="font-size:18px">✍️ Write / Edit Poem</h2>
-<input type="hidden" id="editId">
-<input id="newTitle" class="input" placeholder="Title">
-<select id="newMood" class="input"><option>Most Loved ❤</option><option>Romantic • 2 AM</option><option>Deep Love</option><option>Poets' Favorite</option><option>Love Letter</option><option>Sad • Healing</option></select>
-<textarea id="newBody" class="input" style="height:140px" placeholder="Poem body..."></textarea>
-<input id="newLikes" class="input" type="number" placeholder="Likes count" value="0">
-<div style="display:flex;gap:8px;margin-top:10px"><button class="btn" style="flex:1;padding:13px" onclick="savePoem()">💾 Save to Dashboard</button><button class="btn btn-dark" style="flex:1" onclick="clearForm()">Clear</button></div>
-<div id="genCode" class="hidden" style="margin-top:12px;background:#0e0d11;border:1px solid #2a2932;padding:12px;border-radius:12px;font-size:11px;white-space:pre-wrap"></div>
-</div>
-</div>
+<div id="tab-add" class="hidden"><div class="card"><h2 style="font-size:18px">✍️ Write Poem</h2><input type="hidden" id="editId"><input id="newTitle" class="input" placeholder="Title"><select id="newMood" class="input"><option>Most Loved ❤</option><option>Romantic • 2 AM</option><option>Deep Love</option><option>Poets' Favorite</option><option>Love Letter</option><option>Sad • Healing</option></select><textarea id="newBody" class="input" style="height:130px" placeholder="Poem body..."></textarea><input id="newLikes" type="number" class="input" value="0"><div style="display:flex;gap:8px;margin-top:10px"><button class="btn" style="flex:1" onclick="savePoem()">Save</button><button class="btn btn-dark" style="flex:1" onclick="clearForm()">Clear</button></div><div id="genCode" class="hidden" style="margin-top:10px;background:#0e0d11;border:1px solid #2a2932;padding:12px;border-radius:12px;font-size:11px;white-space:pre-wrap"></div></div></div>
 
-<div id="tab-site" class="hidden">
-<div class="card">
-<h2 style="font-size:18px">🎨 Edit Site Texts (Live Site)</h2>
-<p style="font-size:11px;color:var(--muted);margin:6px 0">Change hero headline, subtext - then copy to index.html</p>
-<label style="font-size:11px;color:var(--muted)">Hero Title</label><input id="siteHeroTitle" class="input" value="Love letters that never sent">
-<label style="font-size:11px;color:var(--muted)">Hero Subtitle</label><input id="siteHeroSub" class="input" value="I'm Paul from Kampala. 4 romantic poems poets love - like & comment!">
-<label style="font-size:11px;color:var(--muted)">About Text</label><input id="siteAbout" class="input" value="Poet from Kampala • WhatsApp: +256709478798">
-<button class="btn" style="margin-top:10px" onclick="alert('Copy these texts and paste in index.html hero section. I can generate full new index.html if you want - tell me YES')">Save Site Text (Local)</button>
-</div>
-</div>
+<div id="tab-links" class="hidden"><div class="card"><h2 style="font-size:18px">🔗 Links & Backup</h2><div id="linksList" style="margin-top:10px;display:flex;flex-direction:column;gap:8px"></div><div style="margin-top:14px"><button class="btn" onclick="exportData()">📦 Export Backup</button> <button class="btn btn-dark" onclick="document.getElementById('importFile').click()">Import</button><input type="file" id="importFile" style="display:none" onchange="importData(event)"></div></div></div>
 
-<div id="tab-images" class="hidden">
-<div class="card">
-<h2 style="font-size:18px">🖼️ Manage 6 Images</h2>
-<p style="font-size:11px;color:var(--muted);margin:6px 0">Replace any image with your own photo - paste new image URL</p>
-<div id="imgList"></div>
-</div>
-</div>
-
-<div id="tab-links" class="hidden">
-<div class="card">
-<h2 style="font-size:18px">🔗 Links + Backup</h2>
-<div id="linksList" style="margin-top:10px;display:flex;flex-direction:column;gap:8px"></div>
-<div style="margin-top:16px;padding:12px;background:#121116;border-radius:12px;border:1px solid var(--line)">
-<b style="font-size:13px">📦 Backup Your Poems</b><p style="font-size:11px;color:var(--muted);margin:6px 0">Download all poems as JSON - safe forever</p>
-<div style="display:flex;gap:8px"><button class="btn" onclick="exportData()">Export JSON</button><button class="btn btn-dark" onclick="document.getElementById('importFile').click()">Import JSON</button><input type="file" id="importFile" style="display:none" onchange="importData(event)"></div>
-</div>
-</div>
-</div>
-
-<div id="tab-settings" class="hidden">
-<div class="card">
-<h2 style="font-size:18px">⚙️ Settings</h2>
-<label style="font-size:11px;color:var(--muted)">New Password</label><input id="newPassInput" class="input" placeholder="e.g. Paul2026Love">
-<button class="btn" style="margin-top:8px" onclick="changePass()">Change Password</button>
-<div style="margin-top:16px">
-<label style="font-size:11px;color:var(--muted)">Reset Dashboard</label><br><button class="btn btn-dark" style="margin-top:6px" onclick="if(confirm('Reset all?')){localStorage.clear();location.reload();}">🗑️ Reset All Data</button>
-</div>
-</div>
-</div>
+<div id="tab-settings" class="hidden"><div class="card"><h2 style="font-size:18px">⚙️ Security Settings</h2><input id="newPassInput" type="password" class="input" placeholder="New password"><button class="btn" style="margin-top:8px" onclick="changePass()">Change Password</button><div style="margin-top:16px"><button class="btn btn-dark" onclick="if(confirm('Reset all dashboard data?')){localStorage.clear();location.reload();}">Reset Dashboard</button></div><p style="font-size:11px;color:var(--muted);margin-top:12px">Tip: For 100% security on GitHub Pages, make repo Private or use Netlify password protect. Current protection is good for hiding from public, but static sites can be inspected. Your new password is stored only in your browser - not in code.</p></div></div>
 
 </div>
 </div>
@@ -171,21 +106,41 @@ h1,h2{font-family:'Playfair Display',serif}
 
 <script>
 let poems = JSON.parse(localStorage.getItem('paul_poems_v3') || 'null') || [
-{id:1,title:"How I Remember You",mood:"Most Loved ❤",likes:24,body:"Not in the big moments,\nbut in the small ones.\n\nHow you fix your hair\nwhen you're nervous.\nHow you laugh\nwhen you try not to.\n\nI fell in love\nin the details,\nand that's where I still live."},
-{id:2,title:"If Love Had a Voice",mood:"Romantic • 2 AM",likes:18,body:"If love had a voice,\nit would sound like your name\nat 2 AM\nwhen the world is asleep\nand my heart is not.\n\nIt would whisper,\n\"stay,\"\nand I would."},
-{id:3,title:"The Coffee Gets Cold",mood:"Deep Love",likes:31,body:"I make coffee for two,\neven when you're not here.\nI watch mine get cold,\nwaiting.\n\nBecause love, I learned,\nis not about\nwho arrives first.\nIt's about\nwho keeps the seat warm."},
-{id:4,title:"In Small Letters",mood:"Poets' Favorite",likes:42,body:"I don't need you\nto shout my name\nfrom rooftops.\n\nJust write it\nin small letters,\nin the corner\nof your day.\n\nLike,\n\"thinking of Paul\"\nbetween errands.\n\nThat's enough.\nThat's everything."}
+{id:1,title:"How I Remember You",mood:"Most Loved ❤",likes:24,body:"Not in the big moments,\nbut in the small ones."},
+{id:2,title:"If Love Had a Voice",mood:"Romantic • 2 AM",likes:18,body:"If love had a voice,\nit would sound like your name\nat 2 AM"},
+{id:3,title:"The Coffee Gets Cold",mood:"Deep Love",likes:31,body:"I make coffee for two,\neven when you're not here."},
+{id:4,title:"In Small Letters",mood:"Poets' Favorite",likes:42,body:"I don't need you\nto shout my name\nfrom rooftops."}
 ];
-let images = JSON.parse(localStorage.getItem('paul_images') || 'null') || [
-"https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=600",
-"https://images.unsplash.com/photo-1529634597503-139d3726fed5?q=80&w=600",
-"https://images.unsplash.com/photo-1474552226712-ac0f0961a954?q=80&w=600",
-"https://images.unsplash.com/photo-1494774157365-9e04c6720e47?q=80&w=600",
-"https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?q=80&w=600",
-"https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?q=80&w=600"
-];
-let DASH_PASS = localStorage.getItem('paul_dash_pass') || 'paul2026';
-function login(){ if(document.getElementById('passInput').value===DASH_PASS){ localStorage.setItem('paul_logged','yes'); showApp(); } else { document.getElementById('loginError').style.display='block'; } }
+
+function hash(str){ let h=0; for(let i=0;i<str.length;i++){ h=((h<<5)-h)+str.charCodeAt(i); h|=0; } return 'h_'+h; }
+let storedHash = localStorage.getItem('paul_dash_hash');
+
+function initLogin(){
+  if(!storedHash){
+    document.getElementById('firstTimeSetup').classList.remove('hidden');
+    document.getElementById('normalLogin').classList.add('hidden');
+    document.getElementById('loginTitle').innerText='SETUP SECURE ACCESS';
+    document.getElementById('loginSub').innerText='Create your secret password now';
+  }
+}
+function setupPassword(){
+  let p1=document.getElementById('newPassSetup').value;
+  let p2=document.getElementById('newPassSetup2').value;
+  if(p1.length<6){ alert('Password must be at least 6 characters'); return; }
+  if(p1!==p2){ alert('Passwords do not match'); return; }
+  localStorage.setItem('paul_dash_hash',hash(p1));
+  localStorage.setItem('paul_logged','yes');
+  showApp();
+}
+function login(){
+  let p=document.getElementById('passInput').value;
+  if(hash(p)===localStorage.getItem('paul_dash_hash')){
+    localStorage.setItem('paul_logged','yes');
+    showApp();
+  } else {
+    document.getElementById('loginError').style.display='block';
+  }
+}
 function showApp(){
   document.getElementById('loginScreen').classList.add('hidden');
   document.getElementById('app').classList.remove('hidden');
@@ -197,36 +152,26 @@ function showTab(name){
   document.querySelectorAll('[id^=tab-]').forEach(e=>e.classList.add('hidden'));
   document.getElementById('tab-'+name).classList.remove('hidden');
   document.querySelectorAll('.menu button, .mobile-tabs button').forEach(b=>b.classList.remove('active'));
-  let b=document.getElementById('btn-'+name); if(b) b.classList.add('active');
 }
 function renderAll(){
   document.getElementById('viewsCount').innerText=localStorage.getItem('paul_views')||1247;
   document.getElementById('poemTotal').innerText=poems.length;
-  document.getElementById('menuCount').innerText='('+poems.length+')';
   document.getElementById('totalLikes').innerText=poems.reduce((a,b)=>a+b.likes,0);
-  renderPoems(); renderImages(); renderLinks();
+  renderPoems(); renderLinks();
 }
 function renderPoems(){
   let q=(document.getElementById('searchPoems').value||'').toLowerCase();
   let list=document.getElementById('poemList'); list.innerHTML='';
-  poems.filter(p=>p.title.toLowerCase().includes(q)||p.body.toLowerCase().includes(q)).forEach(p=>{
+  poems.filter(p=>p.title.toLowerCase().includes(q)).forEach(p=>{
     let div=document.createElement('div'); div.className='poem-row';
-    div.innerHTML=`<div><b>${p.title}</b> <span class="badge">${p.mood}</span> <span class="badge">💓 ${p.likes}</span><p style="font-size:11px;color:var(--muted);white-space:pre-line;margin-top:4px">${p.body.slice(0,120)}</p></div><div style="display:flex;gap:6px"><button class="btn btn-dark" style="font-size:11px" onclick="editPoem(${p.id})">Edit</button><button class="btn btn-dark" style="font-size:11px" onclick="deletePoem(${p.id})">Delete</button><button class="btn" style="font-size:11px" onclick="copyFullCode(${p.id})">Copy HTML</button></div>`;
-    list.appendChild(div);
-  });
-}
-function renderImages(){
-  let list=document.getElementById('imgList'); list.innerHTML='';
-  images.forEach((url,i)=>{
-    let div=document.createElement('div'); div.style.cssText='display:flex;gap:8px;align-items:center;background:#121116;padding:8px;border-radius:10px;border:1px solid var(--line);margin-top:8px';
-    div.innerHTML=`<img src="${url}" style="width:50px;height:50px;border-radius:8px;object-fit:cover"><input id="img${i}" value="${url}" class="input" style="margin:0;font-size:11px"><button class="btn" style="font-size:10px" onclick="saveImg(${i})">Save</button>`;
+    div.innerHTML=`<b>${p.title}</b> <span style="font-size:10px;color:var(--muted)">${p.mood} • 💓 ${p.likes}</span><div style="display:flex;gap:6px;margin-top:6px"><button class="btn btn-dark" style="font-size:11px" onclick="editPoem(${p.id})">Edit</button><button class="btn btn-dark" style="font-size:11px" onclick="deletePoem(${p.id})">Delete</button></div>`;
     list.appendChild(div);
   });
 }
 function renderLinks(){
   let list=document.getElementById('linksList'); list.innerHTML='';
   let data=[["Website","https://paul-mcrae.github.io/POETRY-/"],["WhatsApp","https://wa.me/256709478798"],["Email","paulkaganda957@gmail.com"],["TikTok","https://vt.tiktok.com/ZSgjB8pQT/"]];
-  data.forEach(d=>{ let el=document.createElement('div'); el.style.cssText='display:flex;justify-content:space-between;align-items:center;background:#121116;padding:10px;border-radius:10px;border:1px solid var(--line)'; el.innerHTML=`<div><b style="font-size:12px">${d[0]}</b><br><span style="font-size:10px;color:var(--muted)">${d[1]}</span></div><button class="btn" style="font-size:11px" onclick="navigator.clipboard.writeText('${d[1]}').then(()=>alert('Copied'))">Copy</button>`; list.appendChild(el); });
+  data.forEach(d=>{ let el=document.createElement('div'); el.style.cssText='display:flex;justify-content:space-between;align-items:center;background:#121116;padding:10px;border-radius:10px;border:1px solid #26252e'; el.innerHTML=`<b style="font-size:12px">${d[0]}</b><button class="btn" style="font-size:11px" onclick="navigator.clipboard.writeText('${d[1]}').then(()=>alert('Copied'))">Copy</button>`; list.appendChild(el); });
 }
 function savePoem(){
   let id=document.getElementById('editId').value;
@@ -235,38 +180,20 @@ function savePoem(){
   let body=document.getElementById('newBody').value.trim();
   let likes=parseInt(document.getElementById('newLikes').value)||0;
   if(!title||!body){ alert('Add title and body'); return; }
-  if(id){
-    let p=poems.find(x=>x.id==id); p.title=title; p.mood=mood; p.body=body; p.likes=likes;
-  } else {
-    let newId=poems.length?Math.max(...poems.map(p=>p.id))+1:1;
-    poems.push({id:newId,title,mood,body,likes});
-  }
-  localStorage.setItem('paul_poems_v3',JSON.stringify(poems));
-  clearForm(); renderAll(); showTab('poems');
-  alert('Saved!');
+  if(id){ let p=poems.find(x=>x.id==id); p.title=title; p.mood=mood; p.body=body; p.likes=likes; }
+  else { let newId=poems.length?Math.max(...poems.map(p=>p.id))+1:1; poems.push({id:newId,title,mood,body,likes}); }
+  localStorage.setItem('paul_poems_v3',JSON.stringify(poems)); clearForm(); renderAll(); alert('Saved securely!');
 }
-function editPoem(id){
-  let p=poems.find(x=>x.id===id);
-  document.getElementById('editId').value=p.id;
-  document.getElementById('newTitle').value=p.title;
-  document.getElementById('newMood').value=p.mood;
-  document.getElementById('newBody').value=p.body;
-  document.getElementById('newLikes').value=p.likes;
-  showTab('add');
-}
+function editPoem(id){ let p=poems.find(x=>x.id===id); document.getElementById('editId').value=p.id; document.getElementById('newTitle').value=p.title; document.getElementById('newMood').value=p.mood; document.getElementById('newBody').value=p.body; document.getElementById('newLikes').value=p.likes; showTab('add'); }
 function deletePoem(id){ if(confirm('Delete?')){ poems=poems.filter(p=>p.id!==id); localStorage.setItem('paul_poems_v3',JSON.stringify(poems)); renderAll(); } }
-function clearForm(){ document.getElementById('editId').value=''; document.getElementById('newTitle').value=''; document.getElementById('newBody').value=''; document.getElementById('newLikes').value='0'; document.getElementById('genCode').classList.add('hidden'); }
-function copyFullCode(id){
-  let p=poems.find(x=>x.id===id);
-  let code=`<div class="card">\n<span class="mood">${p.mood}</span>\n<h3>${p.title}</h3>\n<p>${p.body}</p>\n<div class="actions"><button class="act-btn" onclick="likePoem(${p.id})">💓 ${p.likes}</button></div>\n</div>`;
-  navigator.clipboard.writeText(code).then(()=>alert('HTML copied! Paste in index.html'));
-}
-function saveImg(i){ let v=document.getElementById('img'+i).value.trim(); images[i]=v; localStorage.setItem('paul_images',JSON.stringify(images)); alert('Image '+ (i+1) +' saved! Now update index.html img src to this URL'); }
-function exportData(){ let data=JSON.stringify({poems,images},null,2); let blob=new Blob([data],{type:'application/json'}); let url=URL.createObjectURL(blob); let a=document.createElement('a'); a.href=url; a.download='paul-backup.json'; a.click(); }
-function importData(e){ let file=e.target.files[0]; let reader=new FileReader(); reader.onload=function(){ let d=JSON.parse(reader.result); poems=d.poems||poems; images=d.images||images; localStorage.setItem('paul_poems_v3',JSON.stringify(poems)); localStorage.setItem('paul_images',JSON.stringify(images)); renderAll(); alert('Imported!'); }; reader.readAsText(file); }
-function changePass(){ let np=document.getElementById('newPassInput').value.trim(); if(np.length<4){ alert('Short'); return; } localStorage.setItem('paul_dash_pass',np); alert('Password changed to: '+np); }
-if(localStorage.getItem('paul_logged')==='yes'){ showApp(); }
+function clearForm(){ document.getElementById('editId').value=''; document.getElementById('newTitle').value=''; document.getElementById('newBody').value=''; }
+function exportData(){ let data=JSON.stringify({poems},null,2); let blob=new Blob([data],{type:'application/json'}); let url=URL.createObjectURL(blob); let a=document.createElement('a'); a.href=url; a.download='paul-backup.json'; a.click(); }
+function importData(e){ let file=e.target.files[0]; let reader=new FileReader(); reader.onload=function(){ let d=JSON.parse(reader.result); poems=d.poems||poems; localStorage.setItem('paul_poems_v3',JSON.stringify(poems)); renderAll(); alert('Imported!'); }; reader.readAsText(file); }
+function changePass(){ let np=document.getElementById('newPassInput').value.trim(); if(np.length<6){ alert('At least 6 chars'); return; } localStorage.setItem('paul_dash_hash',hash(np)); alert('Password changed! New password: '+np+' - Remember it!'); }
+
+initLogin();
+if(localStorage.getItem('paul_logged')==='yes' && storedHash){ showApp(); }
 </script>
 </body>
-  </html>
+</html>
                       
