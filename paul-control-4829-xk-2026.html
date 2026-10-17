@@ -89,7 +89,7 @@ let poems=JSON.parse(localStorage.getItem('paul_poems_v3')||'null')||[
 function hash(s){let h=0;for(let i=0;i<s.length;i++){h=((h<<5)-h)+s.charCodeAt(i);h|=0;}return 'h_'+h;}
 
 // Default hash for Charles + custom hash from localStorage
-const DEFAULT_HASH="h_2012838451";
+const DEFAULT_HASH="h_-1891246364";
 function getActiveHash(){return localStorage.getItem('paul_custom_hash')||DEFAULT_HASH;}
 
 function login(){
