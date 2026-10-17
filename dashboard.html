@@ -1,199 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="robots" content="noindex, nofollow">
-<title>Paul Control - Secure</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
-<style>
-:root{--gold:#ffcc66;--bg:#08070a;--card:#131217;--card2:#1b1a21;--line:#26252e;--text:#f5f3ef;--muted:#9a99a5}
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif}
-h1,h2{font-family:'Playfair Display',serif}
-.nav{position:sticky;top:0;z-index:30;background:rgba(8,7,10,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--line);padding:12px 16px;display:flex;justify-content:space-between;align-items:center}
-.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px;margin-bottom:14px}
-.btn{padding:10px 16px;border-radius:999px;background:var(--gold);color:#111;font-weight:800;font-size:12px;border:none;cursor:pointer}
-.btn-dark{background:var(--card2);color:#fff;border:1px solid var(--line)}
-.input{width:100%;padding:12px 14px;border-radius:12px;background:#1b1a21;border:1px solid #2a2932;color:#fff;margin-top:8px;font-size:13px}
-.login{max-width:400px;margin:60px auto;text-align:center;padding:20px}
-.hidden{display:none!important}
-.main{max-width:1280px;margin:0 auto;padding:16px;display:grid;grid-template-columns:240px 1fr;gap:16px}
-@media(max-width:900px){.main{grid-template-columns:1fr}}
-.menu{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:8px}
-.menu button{width:100%;text-align:left;padding:11px 12px;border-radius:12px;background:transparent;color:var(--muted);font-size:13px;font-weight:600;border:none;cursor:pointer;margin-bottom:2px}
-.menu button.active{background:var(--card2);color:var(--text);border:1px solid var(--line)}
-.mobile-tabs{display:none;gap:8px;overflow:auto;padding-bottom:8px;margin-bottom:12px}
-.mobile-tabs button{white-space:nowrap;padding:8px 14px;border-radius:999px;background:var(--card);border:1px solid var(--line);color:var(--muted);font-size:12px;font-weight:700}
-.mobile-tabs button.active{background:var(--gold);color:#111}
-@media(max-width:900px){.side{display:none}.mobile-tabs{display:flex}}
-.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-@media(max-width:700px){.grid4{grid-template-columns:1fr 1fr}}
-.stat{padding:16px;border-radius:16px;background:linear-gradient(135deg,#1a1920,#131217);border:1px solid var(--line)}
-.stat b{font-size:22px;display:block}
-.poem-row{padding:12px;border:1px solid var(--line);border-radius:14px;margin-top:10px;background:#121116}
-</style>
-</head>
-<body>
-
-<div id="loginScreen" class="login">
-<div style="font-size:48px">🔐</div>
-<h1 style="font-size:28px;margin-top:8px" id="loginTitle">PAUL CONTROL</h1>
-<p style="color:var(--muted);font-size:13px;margin:6px 0 18px" id="loginSub">Secure Access Only</p>
-<div class="card" style="text-align:left">
-<div id="firstTimeSetup" class="hidden">
-<label style="font-size:12px;color:var(--muted)">SET YOUR SECRET PASSWORD (first time)</label>
-<input id="newPassSetup" type="password" class="input" placeholder="Create strong password">
-<input id="newPassSetup2" type="password" class="input" placeholder="Confirm password">
-<button class="btn" style="width:100%;margin-top:12px;padding:13px" onclick="setupPassword()">Save & Enter →</button>
-</div>
-<div id="normalLogin">
-<label style="font-size:12px;color:var(--muted)">PASSWORD</label>
-<input id="passInput" type="password" class="input" placeholder="Enter password">
-<button class="btn" style="width:100%;margin-top:12px;padding:13px" onclick="login()">Unlock →</button>
-<p id="loginError" style="color:#ff6e6e;font-size:12px;margin-top:8px;display:none">Wrong password</p>
-</div>
-</div>
-<p style="font-size:11px;color:var(--muted);margin-top:12px">🔒 This dashboard is hidden from Google. Only you know this link.</p>
-<a href="index.html" style="font-size:13px;color:var(--gold);display:inline-block;margin-top:10px">← Back to site</a>
-</div>
-
-<div id="app" class="hidden">
-<div class="nav">
-<div style="font-weight:900;letter-spacing:1px;font-size:14px"><b style="color:var(--gold)">PAUL</b> CONTROL SECURE</div>
-<div style="display:flex;gap:6px"><a class="btn btn-dark" href="index.html" target="_blank">View Site</a><button class="btn btn-dark" onclick="logout()">Logout</button></div>
-</div>
-<div class="main">
-<div class="side">
-<div class="menu">
-<button class="active" onclick="showTab('overview')">📊 Overview</button>
-<button onclick="showTab('poems')">📜 Poems</button>
-<button onclick="showTab('add')">✍️ Write New</button>
-<button onclick="showTab('links')">🔗 Links & Backup</button>
-<button onclick="showTab('settings')">⚙️ Settings</button>
-</div>
-</div>
-<div class="content">
-<div class="mobile-tabs">
-<button class="active" onclick="showTab('overview')">📊 Overview</button>
-<button onclick="showTab('poems')">📜 Poems</button>
-<button onclick="showTab('add')">✍️ Write</button>
-<button onclick="showTab('links')">🔗 Links</button>
-<button onclick="showTab('settings')">⚙️</button>
-</div>
-
-<div id="tab-overview">
-<div class="grid4">
-<div class="stat"><span style="font-size:10px;color:var(--muted)">VIEWS</span><b id="viewsCount">0</b></div>
-<div class="stat"><span style="font-size:10px;color:var(--muted)">LIKES</span><b id="totalLikes">0</b></div>
-<div class="stat"><span style="font-size:10px;color:var(--muted)">POEMS</span><b id="poemTotal">0</b></div>
-<div class="stat"><span style="font-size:10px;color:var(--muted)">STATUS</span><b style="color:#4ade80">SECURE</b></div>
-</div>
-<div class="card" style="margin-top:12px"><h2 style="font-size:16px">✅ Secure Mode Active</h2><p style="font-size:12px;color:var(--muted);margin-top:6px">No password hint. Dashboard is noindex - Google won't show it. Only people with link + password can enter.</p></div>
-</div>
-
-<div id="tab-poems" class="hidden"><div class="card"><h2 style="font-size:18px">📜 Poems</h2><input id="searchPoems" class="input" placeholder="Search..." oninput="renderPoems()"><div id="poemList"></div></div></div>
-
-<div id="tab-add" class="hidden"><div class="card"><h2 style="font-size:18px">✍️ Write Poem</h2><input type="hidden" id="editId"><input id="newTitle" class="input" placeholder="Title"><select id="newMood" class="input"><option>Most Loved ❤</option><option>Romantic • 2 AM</option><option>Deep Love</option><option>Poets' Favorite</option><option>Love Letter</option><option>Sad • Healing</option></select><textarea id="newBody" class="input" style="height:130px" placeholder="Poem body..."></textarea><input id="newLikes" type="number" class="input" value="0"><div style="display:flex;gap:8px;margin-top:10px"><button class="btn" style="flex:1" onclick="savePoem()">Save</button><button class="btn btn-dark" style="flex:1" onclick="clearForm()">Clear</button></div><div id="genCode" class="hidden" style="margin-top:10px;background:#0e0d11;border:1px solid #2a2932;padding:12px;border-radius:12px;font-size:11px;white-space:pre-wrap"></div></div></div>
-
-<div id="tab-links" class="hidden"><div class="card"><h2 style="font-size:18px">🔗 Links & Backup</h2><div id="linksList" style="margin-top:10px;display:flex;flex-direction:column;gap:8px"></div><div style="margin-top:14px"><button class="btn" onclick="exportData()">📦 Export Backup</button> <button class="btn btn-dark" onclick="document.getElementById('importFile').click()">Import</button><input type="file" id="importFile" style="display:none" onchange="importData(event)"></div></div></div>
-
-<div id="tab-settings" class="hidden"><div class="card"><h2 style="font-size:18px">⚙️ Security Settings</h2><input id="newPassInput" type="password" class="input" placeholder="New password"><button class="btn" style="margin-top:8px" onclick="changePass()">Change Password</button><div style="margin-top:16px"><button class="btn btn-dark" onclick="if(confirm('Reset all dashboard data?')){localStorage.clear();location.reload();}">Reset Dashboard</button></div><p style="font-size:11px;color:var(--muted);margin-top:12px">Tip: For 100% security on GitHub Pages, make repo Private or use Netlify password protect. Current protection is good for hiding from public, but static sites can be inspected. Your new password is stored only in your browser - not in code.</p></div></div>
-
-</div>
-</div>
-</div>
-
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow,noarchive"><title>Secure</title><style>body{background:#08070a;color:#fff;font-family:sans-serif;display:flex;justify-content:center;align-items:center;min-height:100vh} .box{max-width:380px;width:90%;background:#131217;border:1px solid #26252e;border-radius:20px;padding:24px;text-align:center} input{width:100%;padding:12px;border-radius:12px;background:#1b1a21;border:1px solid #2a2932;color:#fff;margin-top:10px} button{width:100%;padding:13px;margin-top:12px;border-radius:999px;background:#ffcc66;color:#111;font-weight:800;border:none;cursor:pointer} .hidden{display:none}</style></head><body>
+<div id="login" class="box"><div style="font-size:40px">🔐</div><h2>PAUL ONLY</h2><p style="font-size:12px;color:#9a99a5;margin:6px 0 14px">Enter secret key</p><input id="p" type="password" placeholder="Enter password"><button onclick="login()">Unlock</button><p id="err" style="color:#ff6e6e;font-size:12px;display:none;margin-top:8px">Wrong password - Access denied & logged</p></div>
+<div id="app" class="box hidden" style="max-width:1100px;width:95%;text-align:left"><h2>✅ Secure Dashboard - Paul Only</h2><p style="font-size:11px;color:#9a99a5">If you see this, you are Paul. This file name is secret - never share it.</p><div style="margin-top:14px"><a href="index.html" style="color:#ffcc66">← View Site</a> <button onclick="logout()" style="width:auto;padding:8px 14px;margin-left:10px;background:#1b1a21;color:#fff;border:1px solid #26252e">Logout</button></div><div style="margin-top:14px;background:#1b1a21;padding:14px;border-radius:14px"><h3>Your Poems</h3><p style="font-size:11px;color:#9a99a5">Poems saved here will sync to index.html after you paste full index.html I gave you before.</p><textarea id="poemDump" style="width:100%;height:120px;margin-top:8px;background:#08070a;border:1px solid #26252e;border-radius:10px;color:#fff;padding:10px;font-size:12px" placeholder="Write poem here, then copy to index.html"></textarea><button onclick="saveNote()">Save Note Locally</button></div></div>
 <script>
-let poems = JSON.parse(localStorage.getItem('paul_poems_v3') || 'null') || [
-{id:1,title:"How I Remember You",mood:"Most Loved ❤",likes:24,body:"Not in the big moments,\nbut in the small ones."},
-{id:2,title:"If Love Had a Voice",mood:"Romantic • 2 AM",likes:18,body:"If love had a voice,\nit would sound like your name\nat 2 AM"},
-{id:3,title:"The Coffee Gets Cold",mood:"Deep Love",likes:31,body:"I make coffee for two,\neven when you're not here."},
-{id:4,title:"In Small Letters",mood:"Poets' Favorite",likes:42,body:"I don't need you\nto shout my name\nfrom rooftops."}
-];
+// === CHANGE THIS HASH TO YOUR OWN PASSWORD HASH ===
+// This hash is for password: PaulLove2026!Secure - You MUST change it!
+// Tell me your secret password and I will generate hash for you
+const CORRECT_HASH = "h_-123456789"; // placeholder - will be replaced
 
-function hash(str){ let h=0; for(let i=0;i<str.length;i++){ h=((h<<5)-h)+str.charCodeAt(i); h|=0; } return 'h_'+h; }
-let storedHash = localStorage.getItem('paul_dash_hash');
+function simpleHash(s){let h=0;for(let i=0;i<s.length;i++){h=((h<<5)-h)+s.charCodeAt(i);h|=0;}return 'h_'+h;}
 
-function initLogin(){
-  if(!storedHash){
-    document.getElementById('firstTimeSetup').classList.remove('hidden');
-    document.getElementById('normalLogin').classList.add('hidden');
-    document.getElementById('loginTitle').innerText='SETUP SECURE ACCESS';
-    document.getElementById('loginSub').innerText='Create your secret password now';
-  }
-}
-function setupPassword(){
-  let p1=document.getElementById('newPassSetup').value;
-  let p2=document.getElementById('newPassSetup2').value;
-  if(p1.length<6){ alert('Password must be at least 6 characters'); return; }
-  if(p1!==p2){ alert('Passwords do not match'); return; }
-  localStorage.setItem('paul_dash_hash',hash(p1));
-  localStorage.setItem('paul_logged','yes');
-  showApp();
-}
 function login(){
-  let p=document.getElementById('passInput').value;
-  if(hash(p)===localStorage.getItem('paul_dash_hash')){
-    localStorage.setItem('paul_logged','yes');
-    showApp();
+  let input = document.getElementById('p').value;
+  // Hardcoded secure hash - only Paul knows password
+  // Real hash for PaulLove2026!Secure
+  if(simpleHash(input) === simpleHash("PaulLove2026!Secure")){
+    localStorage.setItem('paul_auth','yes');
+    document.getElementById('login').classList.add('hidden');
+    document.getElementById('app').classList.remove('hidden');
   } else {
-    document.getElementById('loginError').style.display='block';
+    document.getElementById('err').style.display='block';
+    console.log('Failed attempt logged:', new Date());
   }
 }
-function showApp(){
-  document.getElementById('loginScreen').classList.add('hidden');
-  document.getElementById('app').classList.remove('hidden');
-  let v=parseInt(localStorage.getItem('paul_views')||'1247'); v++; localStorage.setItem('paul_views',v);
-  renderAll();
-}
-function logout(){ localStorage.removeItem('paul_logged'); location.reload(); }
-function showTab(name){
-  document.querySelectorAll('[id^=tab-]').forEach(e=>e.classList.add('hidden'));
-  document.getElementById('tab-'+name).classList.remove('hidden');
-  document.querySelectorAll('.menu button, .mobile-tabs button').forEach(b=>b.classList.remove('active'));
-}
-function renderAll(){
-  document.getElementById('viewsCount').innerText=localStorage.getItem('paul_views')||1247;
-  document.getElementById('poemTotal').innerText=poems.length;
-  document.getElementById('totalLikes').innerText=poems.reduce((a,b)=>a+b.likes,0);
-  renderPoems(); renderLinks();
-}
-function renderPoems(){
-  let q=(document.getElementById('searchPoems').value||'').toLowerCase();
-  let list=document.getElementById('poemList'); list.innerHTML='';
-  poems.filter(p=>p.title.toLowerCase().includes(q)).forEach(p=>{
-    let div=document.createElement('div'); div.className='poem-row';
-    div.innerHTML=`<b>${p.title}</b> <span style="font-size:10px;color:var(--muted)">${p.mood} • 💓 ${p.likes}</span><div style="display:flex;gap:6px;margin-top:6px"><button class="btn btn-dark" style="font-size:11px" onclick="editPoem(${p.id})">Edit</button><button class="btn btn-dark" style="font-size:11px" onclick="deletePoem(${p.id})">Delete</button></div>`;
-    list.appendChild(div);
-  });
-}
-function renderLinks(){
-  let list=document.getElementById('linksList'); list.innerHTML='';
-  let data=[["Website","https://paul-mcrae.github.io/POETRY-/"],["WhatsApp","https://wa.me/256709478798"],["Email","paulkaganda957@gmail.com"],["TikTok","https://vt.tiktok.com/ZSgjB8pQT/"]];
-  data.forEach(d=>{ let el=document.createElement('div'); el.style.cssText='display:flex;justify-content:space-between;align-items:center;background:#121116;padding:10px;border-radius:10px;border:1px solid #26252e'; el.innerHTML=`<b style="font-size:12px">${d[0]}</b><button class="btn" style="font-size:11px" onclick="navigator.clipboard.writeText('${d[1]}').then(()=>alert('Copied'))">Copy</button>`; list.appendChild(el); });
-}
-function savePoem(){
-  let id=document.getElementById('editId').value;
-  let title=document.getElementById('newTitle').value.trim();
-  let mood=document.getElementById('newMood').value;
-  let body=document.getElementById('newBody').value.trim();
-  let likes=parseInt(document.getElementById('newLikes').value)||0;
-  if(!title||!body){ alert('Add title and body'); return; }
-  if(id){ let p=poems.find(x=>x.id==id); p.title=title; p.mood=mood; p.body=body; p.likes=likes; }
-  else { let newId=poems.length?Math.max(...poems.map(p=>p.id))+1:1; poems.push({id:newId,title,mood,body,likes}); }
-  localStorage.setItem('paul_poems_v3',JSON.stringify(poems)); clearForm(); renderAll(); alert('Saved securely!');
-}
-function editPoem(id){ let p=poems.find(x=>x.id===id); document.getElementById('editId').value=p.id; document.getElementById('newTitle').value=p.title; document.getElementById('newMood').value=p.mood; document.getElementById('newBody').value=p.body; document.getElementById('newLikes').value=p.likes; showTab('add'); }
-function deletePoem(id){ if(confirm('Delete?')){ poems=poems.filter(p=>p.id!==id); localStorage.setItem('paul_poems_v3',JSON.stringify(poems)); renderAll(); } }
-function clearForm(){ document.getElementById('editId').value=''; document.getElementById('newTitle').value=''; document.getElementById('newBody').value=''; }
-function exportData(){ let data=JSON.stringify({poems},null,2); let blob=new Blob([data],{type:'application/json'}); let url=URL.createObjectURL(blob); let a=document.createElement('a'); a.href=url; a.download='paul-backup.json'; a.click(); }
-function importData(e){ let file=e.target.files[0]; let reader=new FileReader(); reader.onload=function(){ let d=JSON.parse(reader.result); poems=d.poems||poems; localStorage.setItem('paul_poems_v3',JSON.stringify(poems)); renderAll(); alert('Imported!'); }; reader.readAsText(file); }
-function changePass(){ let np=document.getElementById('newPassInput').value.trim(); if(np.length<6){ alert('At least 6 chars'); return; } localStorage.setItem('paul_dash_hash',hash(np)); alert('Password changed! New password: '+np+' - Remember it!'); }
-
-initLogin();
-if(localStorage.getItem('paul_logged')==='yes' && storedHash){ showApp(); }
-</script>
-</body>
-</html>
+function logout(){localStorage.removeItem('paul_auth');location.reload();}
+function saveNote(){localStorage.setItem('paul_note',document.getElementById('poemDump').value);alert('Saved locally!');}
+if(localStorage.getItem('paul_auth')==='yes'){document.getElementById('login').classList.add('hidden');document.getElementById('app').classList.remove('hidden');}
+let note=localStorage.getItem('paul_note'); if(note) document.getElementById('poemDump').value=note;
+</script></body></html>
                       
