@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PAUL KAGANDA - Kyotera Poet</title>
+<style>
+body{background:#000;color:#fff;font-family:system-ui,sans-serif;margin:0}
+header{background:#111;padding:12px 14px;display:flex;justify-content:space-between;border-bottom:1px solid #222}
+header b span{color:#f5c518}
+.wa{background:#f5c518;color:#000;padding:10px 18px;border-radius:30px;text-decoration:none;font-weight:800}
+.about{text-align:center;padding:24px;border:2px solid #f5c518;border-radius:20px;margin:12px}
+.about img{width:120px;height:120px;border-radius:50%;border:4px solid #f5c518;object-fit:cover}
+.about h2{color:#f5c518}
+.age{background:#f5c518;color:#000;padding:5px 12px;border-radius:20px;font-size:12px;font-weight:900;display:inline-block;margin:8px 0}
+.card{background:#121212;border:1px solid #222;border-radius:16px;padding:16px;margin:12px}
+.card h3{color:#f5c518;margin-bottom:8px}
+.card p{white-space:pre-line;color:#ddd;line-height:1.6}
+.title{padding:20px 16px;font-size:22px;font-weight:900}
+footer{text-align:center;padding:20px;color:#555;font-size:11px}
+</style>
+</head>
+<body>
+<header><b><span>PAUL</span> KAGANDA</b><a class="wa" href="https://wa.me/256709478798">WhatsApp</a></header>
+
+<div class="about">
+<img src="paul.jpg" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200'">
+<h2>PAUL KAGANDA</h2>
+<div class="age">20 YEARS • KYOTERA POET</div>
+<p>I am Paul Kaganda, 20 years, Kyotera Uganda. I write about love in small things - coffee, shirts, keys, ugly rice.</p>
+<p style="color:#f5c518;margin-top:10px;font-weight:700">📍 Kyotera, Uganda 🌾</p>
+</div>
+
+<div class="title">My Poems 🔥 10 poems</div>
+<div id="poems"></div>
+
+<footer>© 2026 PAUL KAGANDA • Kyotera, Uganda</footer>
+
+<script>
+const poems=[
+["THE COFFEE WE SHARE","I wake before the kettle sings your name,\nThe kitchen cold without your sleepy light,\nI measure two spoons just the same."],
+["HOW YOU FOLD MY SHIRTS","You fold my shirts like you mean it,\nNot perfect, but with care in each crease."],
+["YOUR KEYS ON MY TABLE","Your keys land loud on my table,\nA jingle that means you are home."],
+["GROCERY LIST LOVE","We write our grocery list on the back of bills."],
+["WE COOK UGLY RICE","We cook rice that always sticks a bit,\nYou say it's my heat, I say it's your pot."],
+["THE DISHES AT MIDNIGHT","We do dishes at midnight again,\nBecause we procrastinated all day."],
+["NIGHT BUS","The night bus smells of diesel and sweat,\nWe take it because taxi is too dear."],
+["YOUR UMBRELLA IS TOO SMALL","Your umbrella is too small for two,\nWe walk like crabs, shoulder to shoulder."],
+["HOW YOU STEAL MY HOODIE","You steal my hoodie every cold morning."],
+["THE WAY YOU CHARGE MY PHONE","My phone dies always at eleven percent,\nYou roll your eyes and plug it in."]
+];
+let h="";poems.forEach(p=>{h+=`<div class="card"><h3>${p[0]}</h3><p>${p[1]}</p></div>`});
+document.getElementById("poems").innerHTML=h;
+</script>
+</body>
+</html>
